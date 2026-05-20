@@ -1,4 +1,5 @@
 import { supabase } from './supabase.js'
+import { ALLOWED_EMAILS } from './config.js'
 
 export async function getSession() {
   const { data: { session } } = await supabase.auth.getSession()
@@ -6,6 +7,9 @@ export async function getSession() {
 }
 
 export async function signInWithMagicLink(email) {
+  if (!ALLOWED_EMAILS.includes(email.toLowerCase().trim())) {
+    return { error: { message: 'Dit e-mailadres heeft geen toegang.' } }
+  }
   const { error } = await supabase.auth.signInWithOtp({
     email,
     options: {
