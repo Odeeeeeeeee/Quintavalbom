@@ -1,0 +1,1645 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Quinta Valbom Chat</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #4472C4 0%, #2E5C8A 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .chat-container {
+            width: 100%;
+            max-width: 600px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 40px rgba(0, 0, 0, 0.16);
+            display: flex;
+            flex-direction: column;
+            height: 80vh;
+            max-height: 700px;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, #4472C4 0%, #2E5C8A 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px 12px 0 0;
+            text-align: center;
+        }
+
+        .chat-header h1 {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        .chat-header p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            display: flex;
+            gap: 10px;
+            animation: slideIn 0.3s ease-in;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message.user {
+            justify-content: flex-end;
+        }
+
+        .message-content {
+            max-width: 75%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+        .message.bot .message-content {
+            background: #f0f0f0;
+            color: #333;
+            border-radius: 12px 12px 12px 0;
+        }
+
+        .message.user .message-content {
+            background: #4472C4;
+            color: white;
+            border-radius: 12px 12px 0 12px;
+        }
+
+        .message-meta {
+            font-size: 11px;
+            color: #999;
+            margin-top: 4px;
+        }
+
+        .message.bot .message-meta {
+            text-align: left;
+        }
+
+        .message.user .message-meta {
+            text-align: right;
+        }
+
+        .faq-source {
+            font-size: 12px;
+            color: #666;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid #e0e0e0;
+            font-style: italic;
+        }
+
+        .confidence {
+            font-size: 11px;
+            color: #999;
+            margin-top: 4px;
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            padding: 12px 16px;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #999;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% {
+                opacity: 0.5;
+            }
+            30% {
+                opacity: 1;
+            }
+        }
+
+        .chat-input-area {
+            padding: 15px;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            gap: 10px;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid #ddd;
+            border-radius: 24px;
+            font-size: 14px;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #4472C4;
+        }
+
+        button {
+            padding: 12px 24px;
+            background: #4472C4;
+            color: white;
+            border: none;
+            border-radius: 24px;
+            font-size: 14px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background: #2E5C8A;
+        }
+
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #999;
+        }
+
+        .empty-state h3 {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .empty-state p {
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .suggestion-button {
+            display: inline-block;
+            padding: 8px 16px;
+            background: #E8F1F8;
+            color: #4472C4;
+            border: 1px solid #4472C4;
+            border-radius: 20px;
+            font-size: 12px;
+            cursor: pointer;
+            margin: 5px;
+            transition: all 0.2s;
+        }
+
+        .suggestion-button:hover {
+            background: #4472C4;
+            color: white;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #999;
+        }
+
+        .not-found {
+            background: #fff3cd;
+            color: #856404;
+            border-left: 4px solid #ffc107;
+            padding: 12px;
+            border-radius: 4px;
+        }
+
+        .feedback-buttons {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #e0e0e0;
+            flex-wrap: wrap;
+        }
+
+        .feedback-btn {
+            padding: 8px 12px;
+            font-size: 12px;
+            background: #f0f0f0;
+            color: #666;
+            border: 1px solid #ddd;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .feedback-btn:hover {
+            background: #e0e0e0;
+            color: #333;
+        }
+
+        .feedback-btn.helpful {
+            background: #E8F5E9;
+            color: #2E7D32;
+            border-color: #C8E6C9;
+        }
+
+        .feedback-btn.helpful:hover {
+            background: #C8E6C9;
+        }
+
+        .feedback-btn.unhelpful {
+            background: #FFEBEE;
+            color: #C62828;
+            border-color: #FFCDD2;
+        }
+
+        .feedback-btn.unhelpful:hover {
+            background: #FFCDD2;
+        }
+
+        .feedback-message {
+            font-size: 12px;
+            color: #666;
+            margin-top: 8px;
+            font-style: italic;
+        }
+
+        .ai-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 10px;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-left: 6px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+        }
+
+        .ai-badge.claude {
+            background: #E8F5E9;
+            color: #2E7D32;
+        }
+
+        .ai-badge.local {
+            background: #FFF3E0;
+            color: #E65100;
+        }
+
+        .header-status {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-size: 11px;
+            opacity: 0.85;
+            margin-top: 4px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .status-dot.online {
+            background: #4caf50;
+            box-shadow: 0 0 6px rgba(76, 175, 80, 0.6);
+        }
+
+        .status-dot.offline {
+            background: #ff9800;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+
+        // Versie-stempel zodat je in console direct ziet of nieuwe code geladen is
+        console.log('%c[QuintaBot] geladen — versie 2026-05-03-v11 (synchrone init, geen race)', 'color: #4472C4; font-weight: bold');
+
+        // Ingebouwde FAQ-data als ultimate fallback (Safari blokkeert fetch van file://)
+        // Wordt alleen gebruikt als localStorage leeg is. Admin kan de FAQs daarna aanpassen.
+        window.QUINTA_EMBEDDED_FAQS = null; // wordt hieronder gevuld
+    </script>
+    <script id="embedded-faqs" type="application/json">
+{
+  "faqs": [
+    {
+      "id": 1,
+      "category": "Eten & Drinken",
+      "question": "Wat zijn de openingstijden van de bar?",
+      "answer": "De bar is open van 8:30-11:30 uur voor drinken, koffie en verse broodjes. 's Middags van 15:00-19:00 uur (16:00-19:00 laagseizoen) voor wijntjes, biertjes en ijsjes. Gesloten op zondag.",
+      "status": "PDF",
+      "source": "Brochure",
+      "context": "Openingstijden bar, uren drinken, koffie, terras, wanneer open. Dit is over de bar faciliteiten, niet over receptie of camping."
+    },
+    {
+      "id": 2,
+      "category": "Eten & Drinken",
+      "question": "Kan ik mijn eigen drinken en eten meenemen naar de bar?",
+      "answer": "Nee, je bent niet toegestaan je eigen drinken of eten te nuttigen bij de bar of op het terras.",
+      "status": "PDF",
+      "source": "Brochure",
+      "context": "Bar regels, drinken, eten, meebrengen, picknick, terras. Gaat over bar faciliteiten en regels."
+    },
+    {
+      "id": 3,
+      "category": "Eten & Drinken",
+      "question": "Bieden jullie maaltijden aan?",
+      "answer": "Ja, op bepaalde avonden bieden we gezonde maaltijden aan. Het menu en moment worden op de receptie/bar aangegeven. Je moet je aanmelden en voortijds reserveren omdat er beperkt plaats is.",
+      "status": "PDF",
+      "source": "Brochure",
+      "context": "Eten, maaltijden, diner, restaurantservice, reservering. Bar en eten faciliteiten."
+    },
+    {
+      "id": 4,
+      "category": "Zwemmen",
+      "question": "Wat zijn de openingstijden van het zwembad?",
+      "answer": "Het zwembad is iedere dag open van 9:00 tot 19:00 uur.",
+      "status": "PDF",
+      "source": "Brochure",
+      "context": "Dit gaat over de zwembad faciliteiten, hoe laat je kunt zwemmen, baden, waterpret. Niet over uitchecken of campinguren."
+    },
+    {
+      "id": 5,
+      "category": "Zwemmen",
+      "question": "Wat zijn de regels voor het zwembad?",
+      "answer": "Gebruik op eigen risico. Kinderen moeten onder begeleiding zijn. Geen glas meenemen naar het zwembad.",
+      "status": "PDF",
+      "source": "Brochure",
+      "context": "Zwembadrегels, veiligheid water, kinderen baden, glasregels. Over waterveiligheid en zwembad faciliteiten."
+    },
+    {
+      "id": 6,
+      "category": "Parking & Auto's",
+      "question": "Mag ik met mijn auto naar mijn campingplaats rijden?",
+      "answer": "Ja, voor het uit- en inladen mag je naar de campingplaats rijden. Daarna moet de auto op de parkeerplaats blijven staan.",
+      "status": "PDF",
+      "source": "Brochure",
+      "context": "Auto, parkeren, rijden, camping plaats, voertuig, vervoer. Over parkeerregels en auto's op camping."
+    },
+    {
+      "id": 7,
+      "category": "Parking & Auto's",
+      "question": "Waar moet ik mijn auto parkeren?",
+      "answer": "Na het uit- en inladen van je spullen moet de auto op de parkeerplaats blijven staan.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 8,
+      "category": "Faciliteiten",
+      "question": "Is het kraanwater drinkbaar?",
+      "answer": "Ja, ons kraanwater is natuurlijk gezuiverd en drinkbaar. Het komt uit onze waterbron.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 9,
+      "category": "Faciliteiten",
+      "question": "Hoe betaal ik aan de bar?",
+      "answer": "Aan de bar is alleen contant betalen mogelijk. In het dorpje Gandarela de Basto is een pinautomaat.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 10,
+      "category": "Faciliteiten",
+      "question": "Hoe vaak wordt het toiletgebouw schoongemaakt?",
+      "answer": "Het toiletgebouw wordt iedere dag schoongemaakt.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 11,
+      "category": "Faciliteiten",
+      "question": "Wat kan ik in het toilet doorspelen?",
+      "answer": "Alleen wc papier kan in het toilet worden doorgespoeld. Andere zaken horen in de prullenbak.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 12,
+      "category": "Afval",
+      "question": "Hoe zit het met het chemisch afval van mijn toilet?",
+      "answer": "Er is geen stort voor chemisch afval op de camping. Je afval kan je gescheiden kwijt in de vuilnisbakken op de parkeerplaats en langs de weg bij de ingang.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 13,
+      "category": "Wassen",
+      "question": "Kan ik mijn was doen?",
+      "answer": "Ja, wassen kan op bepaalde momenten van de dag met wasmiddel dat bij ons te verkrijgen is. Schrijf je in bij de bar.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 14,
+      "category": "Check-out & Transport",
+      "question": "Tot hoe laat kan ik uitchecken?",
+      "answer": "Uitchecken graag voor 11:00 uur.",
+      "status": "PDF",
+      "source": "Brochure",
+      "context": "Vertrekken, accommodatie verlaten, inchecktijden, reserveringen. Dit is over camping accommodatie, niet over zwembad, bar of andere faciliteiten."
+    },
+    {
+      "id": 15,
+      "category": "Check-out & Transport",
+      "question": "Zijn er bussen in de buurt?",
+      "answer": "Ja, er vertrekken bussen vanuit Gandarela de Basto naar kleine plaatsen en grote steden in de omgeving.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 16,
+      "category": "Check-out & Transport",
+      "question": "Hoe kan ik een taxi bellen?",
+      "answer": "Je kunt lokale taxi Julio bereiken op +351 968 035 736.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 17,
+      "category": "Veiligheid & Richtlijnen",
+      "question": "Mag ik een bbq gebruiken?",
+      "answer": "Nee, bbq is niet toegestaan op de camping vanwege brandgevaar.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 18,
+      "category": "Veiligheid & Richtlijnen",
+      "question": "Mag ik eten buiten laten staan?",
+      "answer": "Nee, laat geen eten buiten staan.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 19,
+      "category": "Veiligheid & Richtlijnen",
+      "question": "Wat moet ik doen als ik bezoek krijg?",
+      "answer": "Bezoek van buiten de camping? Graag even melden.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 20,
+      "category": "Veiligheid & Richtlijnen",
+      "question": "Wat zijn de rusttijden op de camping?",
+      "answer": "Na 22:00 uur is het stil op de camping. Onze gasten stellen ontspanning & rust erg op prijs.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 21,
+      "category": "Contact & Noodgevallen",
+      "question": "Hoe kan ik de eigenaren bereiken?",
+      "answer": "Telefoon/WhatsApp: +351910348399, E-mail: motho@quintavalbom.nl, Web: www.quintavalbom.nl",
+      "status": "PDF",
+      "source": "Brochure",
+      "context": "Contact, eigenaren, telefoon, whatsapp, email, bereiken, informatie. Over hoe je de camping kunt contacteren."
+    },
+    {
+      "id": 22,
+      "category": "Contact & Noodgevallen",
+      "question": "Wat is het Europese alarmnummer?",
+      "answer": "Het Europese alarmnummer is 112.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 23,
+      "category": "Contact & Noodgevallen",
+      "question": "Hoe bereik ik een ambulance?",
+      "answer": "Ambulance Gandarela de Basto: +351 255 655 143",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 24,
+      "category": "Wifi & Overig",
+      "question": "Wat is het Wifi-wachtwoord?",
+      "answer": "Quinta Valbom Wifi: HappyHolidays!",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 25,
+      "category": "Wifi & Overig",
+      "question": "Wat zijn de pauzetijden?",
+      "answer": "Tussen 12:00 en 15:00 uur pauzeren we. Bij nood ben je bereikbaar via WhatsApp/SMS.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 26,
+      "category": "Over Quinta Valbom",
+      "question": "Wie zijn de eigenaren?",
+      "answer": "Moniek en Thomas zijn de eigenaren van Quinta Valbom. Ze hebben de camping opgericht omdat ze op zoek waren naar meer vrijheid, verbinding, buitenleven en betekenis.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 27,
+      "category": "Tips & Activiteiten",
+      "question": "Wat zijn leuke dingen om in de buurt te doen?",
+      "answer": "Er zijn veel activiteiten: wandelen naar Mondim de Basto, wijnproeverijen bij Santa Cristina of Villa Seara, Jeep tours, waterpark in Fafe of Amarante, Pena Aventura Park. Zie ook de kaart in de brochure voor meer tips.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 28,
+      "category": "Tips & Activiteiten",
+      "question": "Zijn er winkels in de omgeving?",
+      "answer": "Ja, in Gandarela de Basto (5 min rijden) zijn supermarkt, groente- en fruitboer, bakkerij. In Cabeceiras de Basto (15 min) zijn grotere supermarkten als Continente en Intermarché.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 29,
+      "category": "Tips & Activiteiten",
+      "question": "Hoe kom ik aan informatie over fietsen?",
+      "answer": "Je kunt informatie over fietstochten en fietsverhuur krijgen bij de bar. Er is een ecopista fietspad van Arco de Baúlhe via Mondim en Celorico naar Amarante.",
+      "status": "PDF",
+      "source": "Brochure"
+    }
+  ],
+  "categories": [
+    "Afval",
+    "Check-out & Transport",
+    "Contact & Noodgevallen",
+    "Eten & Drinken",
+    "Faciliteiten",
+    "Over Quinta Valbom",
+    "Parking & Auto's",
+    "Tips & Activiteiten",
+    "Veiligheid & Richtlijnen",
+    "Wassen",
+    "Wifi & Overig",
+    "Zwemmen"
+  ]
+}
+    </script>
+    <script>
+        try {
+            window.QUINTA_EMBEDDED_FAQS = JSON.parse(document.getElementById('embedded-faqs').textContent);
+            console.log('[QuintaBot] Embedded FAQs beschikbaar:', window.QUINTA_EMBEDDED_FAQS.faqs.length, 'stuks');
+        } catch (e) {
+            console.warn('[QuintaBot] Kon embedded FAQs niet parsen:', e);
+        }
+    </script>
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+
+        // Synchrone initiële FAQ-load: vermijdt race condition waarbij user
+        // typt voordat React's useEffect klaar is met setFaqs.
+        const initialFaqs = (() => {
+            try {
+                const saved = localStorage.getItem('quinta_faqs');
+                if (saved) {
+                    const parsed = JSON.parse(saved);
+                    if (Array.isArray(parsed) && parsed.length > 0) {
+                        console.log('[QuintaBot] Init: FAQs uit localStorage:', parsed.length);
+                        return parsed;
+                    }
+                }
+            } catch (e) {}
+            if (window.QUINTA_EMBEDDED_FAQS?.faqs?.length) {
+                console.log('[QuintaBot] Init: FAQs uit embedded data:', window.QUINTA_EMBEDDED_FAQS.faqs.length);
+                // Direct ook naar localStorage zodat het persistent is
+                try { localStorage.setItem('quinta_faqs', JSON.stringify(window.QUINTA_EMBEDDED_FAQS.faqs)); } catch (e) {}
+                return window.QUINTA_EMBEDDED_FAQS.faqs;
+            }
+            console.warn('[QuintaBot] Init: GEEN FAQs beschikbaar!');
+            return [];
+        })();
+
+        const ChatApp = () => {
+            // Welkomstbericht direct zetten als FAQs al beschikbaar zijn
+            const initialMessages = initialFaqs.length > 0 ? [{
+                id: 1,
+                type: 'bot',
+                text: 'Hallo! 👋 Ik ben de Quinta Valbom chatbot. Hoe kan ik je helpen? Stel je vragen over onze camping!',
+                timestamp: new Date()
+            }] : [];
+            const [messages, setMessages] = useState(initialMessages);
+            const [input, setInput] = useState('');
+            const [loading, setLoading] = useState(initialFaqs.length === 0);
+            const [faqs, setFaqs] = useState(initialFaqs);
+            const [typing, setTyping] = useState(false);
+            const [feedbackMessage, setFeedbackMessage] = useState(null);
+            const [aiSettings, setAiSettings] = useState({ enabled: false, apiKey: '', model: 'claude-haiku-4-5', temperature: 0.5, debug: false });
+            const [sessionLanguage, setSessionLanguage] = useState(null); // wordt gezet op eerste user-bericht
+            const messagesEndRef = useRef(null);
+
+            // Welkomstberichten + fallback-zinnen per taal
+            const I18N = {
+                nl: {
+                    welcome: 'Hallo! 👋 Ik ben de Quinta Valbom chatbot. Hoe kan ik je helpen? Stel je vragen over onze camping!',
+                    placeholder: 'Stel je vraag...',
+                    send: 'Verzenden',
+                    notFoundClaude: 'Daar heb ik helaas geen antwoord op. Ik heb je vraag doorgestuurd naar Moniek of Thomas — zij komen er bij je op terug. Of bel/app gerust direct: +351 910 348 399.',
+                    notFoundLocal: 'Daar heb ik nu geen passend antwoord op. Ik heb je vraag doorgegeven aan Moniek of Thomas. Voor iets dringends: +351 910 348 399 (WhatsApp).',
+                    lowConfPrefix: 'Ik denk dat je deze info zoekt:',
+                    lowConfSuffix: '(Klopt dit niet helemaal? Stel je vraag dan iets anders, of laat ons weten via 👎.)',
+                    feedbackThanksPos: 'Dank je wel voor je positieve feedback!',
+                    feedbackThanksNeg: 'Dank je wel voor je negatieve feedback!',
+                    helpful: '👍 Nuttig',
+                    unhelpful: '👎 Niet nuttig',
+                    category: 'Categorie'
+                },
+                en: {
+                    welcome: 'Hi! 👋 I\'m the Quinta Valbom chatbot. How can I help? Ask me anything about our campsite!',
+                    placeholder: 'Type your question...',
+                    send: 'Send',
+                    notFoundClaude: 'I don\'t have an answer for that. I\'ve forwarded your question to Moniek or Thomas — they\'ll get back to you. For something urgent, call/WhatsApp +351 910 348 399.',
+                    notFoundLocal: 'I don\'t have a good answer for that right now. Your question has been forwarded to Moniek or Thomas. Urgent? +351 910 348 399 (WhatsApp).',
+                    lowConfPrefix: 'I think this is what you\'re looking for:',
+                    lowConfSuffix: '(Not quite right? Try rephrasing your question, or let us know with 👎.)',
+                    feedbackThanksPos: 'Thanks for your positive feedback!',
+                    feedbackThanksNeg: 'Thanks for your feedback!',
+                    helpful: '👍 Helpful',
+                    unhelpful: '👎 Not helpful',
+                    category: 'Category'
+                },
+                pt: {
+                    welcome: 'Olá! 👋 Sou o chatbot do Quinta Valbom. Em que posso ajudar? Faça perguntas sobre o nosso parque de campismo!',
+                    placeholder: 'Escreva a sua pergunta...',
+                    send: 'Enviar',
+                    notFoundClaude: 'Lamento, não tenho resposta para isso. Enviei a sua pergunta à Moniek ou ao Thomas — eles entrarão em contacto consigo. Para urgências: +351 910 348 399.',
+                    notFoundLocal: 'Não tenho uma boa resposta para isso agora. A sua pergunta foi encaminhada à Moniek ou ao Thomas. Urgente? +351 910 348 399 (WhatsApp).',
+                    lowConfPrefix: 'Acho que está à procura disto:',
+                    lowConfSuffix: '(Não é bem isto? Tente reformular ou indique com 👎.)',
+                    feedbackThanksPos: 'Obrigado pelo seu feedback positivo!',
+                    feedbackThanksNeg: 'Obrigado pelo seu feedback!',
+                    helpful: '👍 Útil',
+                    unhelpful: '👎 Não útil',
+                    category: 'Categoria'
+                },
+                de: {
+                    welcome: 'Hallo! 👋 Ich bin der Quinta Valbom Chatbot. Wie kann ich helfen? Stelle deine Fragen zum Campingplatz!',
+                    placeholder: 'Stelle deine Frage...',
+                    send: 'Senden',
+                    notFoundClaude: 'Darauf habe ich leider keine Antwort. Ich habe deine Frage an Moniek oder Thomas weitergeleitet — sie melden sich. Bei Eile: +351 910 348 399.',
+                    notFoundLocal: 'Darauf habe ich gerade keine passende Antwort. Deine Frage wurde an Moniek oder Thomas weitergeleitet. Dringend? +351 910 348 399 (WhatsApp).',
+                    lowConfPrefix: 'Ich glaube, du suchst das:',
+                    lowConfSuffix: '(Nicht ganz richtig? Formuliere deine Frage anders, oder melde es mit 👎.)',
+                    feedbackThanksPos: 'Danke für dein positives Feedback!',
+                    feedbackThanksNeg: 'Danke für dein Feedback!',
+                    helpful: '👍 Hilfreich',
+                    unhelpful: '👎 Nicht hilfreich',
+                    category: 'Kategorie'
+                },
+                fr: {
+                    welcome: 'Bonjour ! 👋 Je suis le chatbot de Quinta Valbom. Comment puis-je vous aider ? Posez vos questions sur notre camping !',
+                    placeholder: 'Tapez votre question...',
+                    send: 'Envoyer',
+                    notFoundClaude: 'Je n\'ai pas de réponse à cela. J\'ai transmis votre question à Moniek ou Thomas — ils vous recontacteront. Pour quelque chose d\'urgent : +351 910 348 399.',
+                    notFoundLocal: 'Je n\'ai pas de bonne réponse pour le moment. Votre question a été transmise à Moniek ou Thomas. Urgent ? +351 910 348 399 (WhatsApp).',
+                    lowConfPrefix: 'Je pense que vous cherchez ceci :',
+                    lowConfSuffix: '(Pas tout à fait ça ? Reformulez ou signalez avec 👎.)',
+                    feedbackThanksPos: 'Merci pour votre retour positif !',
+                    feedbackThanksNeg: 'Merci pour votre retour !',
+                    helpful: '👍 Utile',
+                    unhelpful: '👎 Pas utile',
+                    category: 'Catégorie'
+                }
+            };
+
+            const t = (key, lang) => {
+                const useLang = lang || sessionLanguage || 'nl';
+                return I18N[useLang]?.[key] || I18N.nl[key];
+            };
+
+            // ============================================================
+            // AI Service — Claude API wrapper
+            // Werkt nu rechtstreeks vanuit de browser. Wanneer je naar
+            // Supabase gaat, vervang je de fetch-URL door je Edge Function
+            // endpoint en stuur je geen API key meer mee.
+            // ============================================================
+            const askClaude = async (userQuestion, faqList, settings, language = 'nl') => {
+                const compactFaqs = faqList.map(f => ({
+                    id: f.id,
+                    category: f.category,
+                    q: f.question,
+                    a: f.answer,
+                    ctx: f.context || ''
+                }));
+
+                const langNames = { nl: 'Dutch (Nederlands)', en: 'English', pt: 'Portuguese (Português)', de: 'German (Deutsch)', fr: 'French (Français)' };
+                const targetLang = langNames[language] || langNames.nl;
+
+                const systemPrompt = `You are the friendly, helpful chatbot for camping Quinta Valbom in Portugal — a small family-run campsite owned by Moniek and Thomas. Guests ask all kinds of questions about the campsite.
+
+YOUR MOST IMPORTANT JOB: BE HELPFUL.
+
+When a guest asks something:
+- If the FAQ list contains ANY information that could help (even partially or loosely related), USE IT.
+- Be liberal in matching: "Where can I get a coffee?" matches the bar FAQ. "Is the water safe?" matches the tap-water FAQ. "How do I get to the city?" matches the bus/taxi FAQs. "Is there internet?" matches the WiFi FAQ.
+- If a question has multiple parts and you can answer some of them, answer what you can.
+- It's MUCH better to give a useful related answer than to escalate to the owners.
+
+LANGUAGE: Always answer in ${targetLang}. The FAQs below are in Dutch — translate them when answering. Keep tone warm, friendly, and natural for a holiday context.
+
+ESCALATION (only when truly necessary):
+Only respond with {"matched":false} if the question is COMPLETELY off-topic with no relation to ANY FAQ — for example: medical advice, political opinions, requests to do illegal things, or topics that genuinely have nothing to do with a campsite (like "what's the meaning of life?").
+Examples that should NOT escalate:
+- "Mag mijn hond mee?" → mention there's no specific pet info but suggest they contact Moniek/Thomas to ask (still matched=true, use the contact FAQ)
+- "Kan ik betalen met creditcard?" → mention the bar is cash only and direct them to the pinautomaat in Gandarela
+- "Is er stroom op de camping?" → no FAQ about it, but use the contact FAQ to suggest they ask the owners
+
+OUTPUT FORMAT (always strict JSON, nothing else):
+- If you can help: {"matched":true,"answer":"<your warm answer in ${targetLang}>","faq_id":<id of the most-used FAQ>,"category":"<category name>"}
+- If truly off-topic: {"matched":false}
+
+ANSWER STYLE:
+- 1-3 sentences, conversational
+- No greeting in every answer; go straight to the content
+- Be specific (mention times, places, contact details when relevant)
+- If combining info, pick the SINGLE most relevant faq_id
+
+FAQ LIST (in Dutch — translate to ${targetLang}):
+${JSON.stringify(compactFaqs, null, 0)}`;
+
+                const response = await fetch('https://api.anthropic.com/v1/messages', {
+                    method: 'POST',
+                    headers: {
+                        'x-api-key': settings.apiKey,
+                        'anthropic-version': '2023-06-01',
+                        'anthropic-dangerous-direct-browser-access': 'true',
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        model: settings.model,
+                        max_tokens: 400,
+                        temperature: settings.temperature ?? 0.3,
+                        system: systemPrompt,
+                        messages: [{ role: 'user', content: userQuestion }]
+                    })
+                });
+
+                if (!response.ok) {
+                    const errText = await response.text();
+                    throw new Error(`Claude API gaf ${response.status}: ${errText.slice(0, 200)}`);
+                }
+
+                const data = await response.json();
+                const text = data?.content?.[0]?.text?.trim() || '';
+
+                // Parse JSON antwoord (probeer ook als er wat extra tekst om heen staat)
+                let parsed = null;
+                try {
+                    parsed = JSON.parse(text);
+                } catch (e) {
+                    // Probeer JSON uit tekst te extraheren
+                    const match = text.match(/\{[\s\S]*\}/);
+                    if (match) {
+                        try { parsed = JSON.parse(match[0]); } catch (e2) {}
+                    }
+                }
+
+                if (!parsed) {
+                    // Als parsing faalt, gebruik raw tekst als antwoord
+                    return { matched: true, answer: text, faq_id: null, category: null, source: 'claude-raw' };
+                }
+
+                if (parsed.matched === false) {
+                    return { matched: false, source: 'claude' };
+                }
+
+                return {
+                    matched: true,
+                    answer: parsed.answer,
+                    faq_id: parsed.faq_id || null,
+                    category: parsed.category || null,
+                    source: 'claude'
+                };
+            };
+
+            const savePendingQuestion = (question) => {
+                const pending = JSON.parse(localStorage.getItem('quinta_pending_questions') || '[]');
+
+                // Check of deze vraag al exists
+                const existing = pending.find(p => p.question.toLowerCase() === question.toLowerCase());
+
+                if (existing) {
+                    // Verhoog count
+                    existing.count += 1;
+                    existing.lastAsked = new Date().toISOString();
+                } else {
+                    // Voeg nieuwe vraag toe
+                    pending.push({
+                        id: Date.now(),
+                        question: question,
+                        timestamp: new Date().toISOString(),
+                        lastAsked: new Date().toISOString(),
+                        count: 1,
+                        answered: false
+                    });
+                }
+
+                localStorage.setItem('quinta_pending_questions', JSON.stringify(pending));
+            };
+
+            const markFeedback = (messageId, helpful) => {
+                const msg = messages.find(m => m.id === messageId);
+                const lang = msg?.language || sessionLanguage || 'nl';
+                setFeedbackMessage(t(helpful ? 'feedbackThanksPos' : 'feedbackThanksNeg', lang));
+                setTimeout(() => setFeedbackMessage(null), 3000);
+
+                // Als unhelpful: sla op als pending question + verwijder uit cache
+                if (!helpful) {
+                    if (msg && msg.userQuestion) {
+                        savePendingQuestion(msg.userQuestion);
+                        if (msg.source === 'cache' && msg.cacheKey) {
+                            removeCacheEntry(msg.userQuestion, msg.language || 'nl');
+                        }
+                    }
+                }
+            };
+
+            useEffect(() => {
+                // Load AI settings (door admin paneel beheerd)
+                const savedSettings = localStorage.getItem('quinta_ai_settings');
+                if (savedSettings) {
+                    try { setAiSettings(JSON.parse(savedSettings)); } catch (e) {}
+                }
+
+                // Load FAQs - eerst kijken naar localStorage (door admin gemaakte/aangepaste versie)
+                const savedFaqs = localStorage.getItem('quinta_faqs');
+                console.log('[BOT] localStorage quinta_faqs aanwezig?', !!savedFaqs, savedFaqs ? `(${savedFaqs.length} chars)` : '');
+                if (savedFaqs) {
+                    try {
+                        const parsed = JSON.parse(savedFaqs);
+                        if (Array.isArray(parsed) && parsed.length > 0) {
+                            console.log('%c[BOT] ✅ FAQs geladen uit localStorage:', 'color: green', parsed.length, 'stuks');
+                            setFaqs(parsed);
+                            setLoading(false);
+                            setMessages([{
+                                id: 1,
+                                type: 'bot',
+                                text: I18N.nl.welcome,
+                                timestamp: new Date()
+                            }]);
+                            return;
+                        }
+                        console.log('%c[BOT] ⚠️ localStorage bevat lege FAQ-lijst — val terug op faq_data.json', 'color: orange');
+                    } catch (e) {}
+                }
+
+                // Geen (geldige) data in localStorage. Gebruik de in de HTML
+                // ingebedde FAQ-data (Safari blokkeert fetch van file:// URLs).
+                if (window.QUINTA_EMBEDDED_FAQS?.faqs?.length) {
+                    const embedded = window.QUINTA_EMBEDDED_FAQS.faqs;
+                    console.log('%c[BOT] ✅ FAQs geladen uit embedded data:', 'color: green', embedded.length, 'stuks');
+                    setFaqs(embedded);
+                    try { localStorage.setItem('quinta_faqs', JSON.stringify(embedded)); } catch (e) {}
+                    setLoading(false);
+                    setMessages([{
+                        id: 1,
+                        type: 'bot',
+                        text: I18N.nl.welcome,
+                        timestamp: new Date()
+                    }]);
+                    return;
+                }
+
+                // Echte fallback: fetch (werkt alleen via een server, niet file://)
+                console.log('[BOT] Geen embedded FAQs — probeer fetch faq_data.json...');
+                fetch('faq_data.json')
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log('%c[BOT] ✅ FAQs geladen uit JSON-bestand:', 'color: green', data.faqs.length, 'stuks');
+                        setFaqs(data.faqs);
+                        setLoading(false);
+                        setMessages([{
+                            id: 1,
+                            type: 'bot',
+                            text: I18N.nl.welcome,
+                            timestamp: new Date()
+                        }]);
+                    })
+                    .catch(err => {
+                        console.log('%c[BOT] ❌ Kon FAQs nergens vandaan laden:', 'color: red; font-weight: bold', err.message);
+                        setLoading(false);
+                        setMessages([{
+                            id: 1,
+                            type: 'bot',
+                            text: 'Oops! Kon FAQs niet laden.',
+                            timestamp: new Date()
+                        }]);
+                    });
+            }, []);
+
+            useEffect(() => {
+                // Scroll to bottom
+                messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+            }, [messages]);
+
+            // ============================================================
+            // Taal-detectie (eenvoudige heuristiek NL/EN/PT/DE/FR)
+            // Wordt gebruikt om cache per taal op te slaan en om Claude
+            // de juiste antwoord-taal mee te geven.
+            // ============================================================
+            const detectLanguage = (text) => {
+                const t = ` ${text.toLowerCase()} `;
+                const score = { nl: 0, en: 0, pt: 0, de: 0, fr: 0 };
+
+                const markers = {
+                    nl: [' de ', ' het ', ' een ', ' ik ', ' jij ', ' wat ', ' hoe ', ' waar ', ' wanneer ', ' kan ', ' mag ', ' is ', ' zijn ', ' niet ', ' wel ', ' ook ', ' op ', ' voor ', ' met ', ' van ', ' naar ', ' uur ', ' hoelaat ', ' tot '],
+                    en: [' the ', ' is ', ' are ', ' what ', ' how ', ' when ', ' where ', ' can ', ' do ', ' does ', ' my ', ' your ', ' you ', ' open ', ' time ', ' there ', ' please ', ' for ', ' with '],
+                    pt: [' o ', ' a ', ' os ', ' as ', ' que ', ' como ', ' quando ', ' onde ', ' posso ', ' está ', ' são ', ' até ', ' por favor ', ' obrigado ', ' obrigada ', ' bom ', ' boa '],
+                    de: [' der ', ' die ', ' das ', ' ich ', ' du ', ' wie ', ' wann ', ' wo ', ' kann ', ' ist ', ' sind ', ' bitte ', ' danke ', ' für ', ' mit '],
+                    fr: [' le ', ' la ', ' les ', ' je ', ' tu ', ' vous ', ' que ', ' comment ', ' quand ', ' où ', ' puis-je ', ' est ', ' sont ', ' pour ', ' avec ', ' merci ']
+                };
+
+                for (const [lang, words] of Object.entries(markers)) {
+                    words.forEach(w => { if (t.includes(w)) score[lang]++; });
+                }
+
+                let best = 'nl';
+                let bestScore = -1;
+                for (const [lang, s] of Object.entries(score)) {
+                    if (s > bestScore) { best = lang; bestScore = s; }
+                }
+                // Default naar Nederlands als geen taal duidelijk uitspringt
+                return bestScore >= 1 ? best : 'nl';
+            };
+
+            // ============================================================
+            // Cache laag — onthoudt question + language → faq_id, zodat
+            // herhaalde of bijna-identieke vragen direct beantwoord worden.
+            // Antwoord komt altijd live uit de FAQ-lijst, dus blijft fris.
+            // ============================================================
+            const CACHE_KEY = 'quinta_question_cache';
+
+            const loadCache = () => {
+                try {
+                    const raw = localStorage.getItem(CACHE_KEY);
+                    return raw ? JSON.parse(raw) : {};
+                } catch (e) { return {}; }
+            };
+
+            const saveCache = (cache) => {
+                try { localStorage.setItem(CACHE_KEY, JSON.stringify(cache)); } catch (e) {}
+            };
+
+            const normalizeQuestion = (q) => q.toLowerCase().trim().replace(/[?!.,;:'"()]/g, '').replace(/\s+/g, ' ');
+
+            // Probeer cache lookup. Returnt { faq_id, normalizedQ, answer, exactMatch } of null.
+            const lookupCache = (question, language) => {
+                const cache = loadCache();
+                const langCache = cache[language] || {};
+                const norm = normalizeQuestion(question);
+
+                // Laag 1A: exacte match
+                if (langCache[norm]) {
+                    return {
+                        faq_id: langCache[norm].faq_id,
+                        answer: langCache[norm].answer,
+                        normalizedQ: norm,
+                        exactMatch: true
+                    };
+                }
+
+                // Laag 1B: fuzzy 90% match op cache-keys (gebruikt zelfde token-systeem)
+                const qTokens = tokenize(question);
+                if (qTokens.length === 0) return null;
+
+                const idf = getIdf();
+                let best = null;
+                let bestScore = 0;
+
+                for (const cachedQ of Object.keys(langCache)) {
+                    const pseudoFaq = { question: cachedQ, answer: '', context: '', category: '' };
+                    const score = scoreMatch(qTokens, pseudoFaq, idf);
+                    if (score > bestScore) {
+                        bestScore = score;
+                        best = {
+                            faq_id: langCache[cachedQ].faq_id,
+                            answer: langCache[cachedQ].answer,
+                            normalizedQ: cachedQ
+                        };
+                    }
+                }
+
+                if (best && bestScore >= 0.90) {
+                    return { ...best, exactMatch: false, fuzzyScore: bestScore };
+                }
+
+                return null;
+            };
+
+            // Schrijf naar cache. Slaat ook de (mogelijk vertaalde) antwoord-tekst op,
+            // zodat de juiste taal bij vervolgvragen direct terugkomt.
+            const writeCache = (question, language, faqId, answerText) => {
+                if (!faqId || !answerText) return;
+                const cache = loadCache();
+                if (!cache[language]) cache[language] = {};
+                const norm = normalizeQuestion(question);
+                const existing = cache[language][norm];
+                cache[language][norm] = {
+                    faq_id: faqId,
+                    answer: answerText,
+                    hits: (existing?.hits || 0) + 1,
+                    firstSeen: existing?.firstSeen || new Date().toISOString(),
+                    lastUsed: new Date().toISOString(),
+                    originalQuestion: existing?.originalQuestion || question
+                };
+                saveCache(cache);
+            };
+
+            // Verhoog hits-teller bij cache-hit
+            const bumpCacheHit = (language, normalizedQ) => {
+                const cache = loadCache();
+                if (cache[language]?.[normalizedQ]) {
+                    cache[language][normalizedQ].hits = (cache[language][normalizedQ].hits || 0) + 1;
+                    cache[language][normalizedQ].lastUsed = new Date().toISOString();
+                    saveCache(cache);
+                }
+            };
+
+            // Verwijder cache-entry (gebruikt bij 👎 feedback)
+            const removeCacheEntry = (question, language) => {
+                const cache = loadCache();
+                const norm = normalizeQuestion(question);
+                if (cache[language]?.[norm]) {
+                    delete cache[language][norm];
+                    saveCache(cache);
+                }
+            };
+
+            // ============================================================
+            // Lokaal matching algoritme (fallback wanneer Claude niet
+            // beschikbaar is). Verbeterd: meer synoniemen, fuzzy matching,
+            // stopwoorden eruit, lagere drempel.
+            // ============================================================
+            const synonymsMap = {
+                'zwemmen': ['zwembad', 'baden', 'water', 'piscina', 'swimming', 'duiken', 'pootjebaden'],
+                'tijd': ['uur', 'uren', 'tijd', 'tijden', 'tot hoelaat', 'hoelaat', 'wanneer', 'hoe laat', 'om hoe laat', 'tijdstip', 'openingstijd', 'openingstijden', 'sluitingstijd'],
+                'open': ['open', 'geopend', 'opening', 'openen', 'gesloten', 'dicht', 'sluit', 'sluiten'],
+                'bar': ['bar', 'café', 'cafe', 'kroeg', 'drinken', 'drank', 'koffie', 'thee', 'terras', 'wijntje', 'wijn', 'biertje', 'bier', 'borrel'],
+                'eten': ['eten', 'maaltijd', 'maaltijden', 'diner', 'avondeten', 'lunch', 'broodje', 'broodjes', 'restaurant', 'menu', 'honger', 'snack'],
+                'uitchecken': ['uitchecken', 'checkout', 'check-out', 'vertrekken', 'vertrek', 'weggaan', 'opbreken', 'inleveren'],
+                'inchecken': ['inchecken', 'checkin', 'check-in', 'aankomen', 'aankomst', 'arriveren'],
+                'receptie': ['receptie', 'ontvangst', 'info', 'informatie', 'contact', 'beheerder', 'eigenaar', 'eigenaren', 'baliepersoneel'],
+                'contact': ['contact', 'bellen', 'telefoon', 'whatsapp', 'app', 'mailen', 'email', 'mail', 'bereiken', 'mailadres', 'telefoonnummer'],
+                'regels': ['regel', 'regels', 'reglement', 'rules', 'beleid', 'mag', 'mogen', 'verboden', 'toegestaan'],
+                'faciliteiten': ['faciliteit', 'faciliteiten', 'voorzieningen', 'voorziening', 'facilities', 'service'],
+                'auto': ['auto', 'wagen', 'voertuig', 'parkeren', 'parking', 'parkeerplaats', 'rijden'],
+                'wifi': ['wifi', 'wi-fi', 'internet', 'wachtwoord', 'password', 'netwerk', 'verbinding'],
+                'toilet': ['toilet', 'wc', 'sanitair', 'sanitairgebouw', 'doorspoelen', 'spoelen'],
+                'wassen': ['was', 'wassen', 'wasmachine', 'wasserette', 'kleren wassen', 'wasje'],
+                'afval': ['afval', 'vuilnis', 'vuil', 'prullenbak', 'gft', 'plastic', 'restafval', 'chemisch'],
+                'water': ['water', 'kraanwater', 'drinkwater', 'drinkbaar', 'leidingwater', 'bron'],
+                'bbq': ['bbq', 'barbecue', 'grill', 'grillen', 'vuur'],
+                'bezoek': ['bezoek', 'bezoeker', 'gast', 'visite', 'vrienden', 'familie', 'logé'],
+                'rust': ['rust', 'stilte', 'stil', 'rustig', 'lawaai', 'geluid', 'rusttijd', 'nachtrust'],
+                'noodgeval': ['noodgeval', 'noodnummer', 'alarm', 'alarmnummer', 'ambulance', 'politie', '112', 'hulp', 'spoed'],
+                'betalen': ['betalen', 'betaling', 'pin', 'pinnen', 'pinautomaat', 'cash', 'contant', 'creditcard', 'geld'],
+                'omgeving': ['omgeving', 'buurt', 'in de buurt', 'wandelen', 'fietsen', 'activiteit', 'activiteiten', 'doen', 'leuk', 'uitje', 'attractie', 'wijnproef'],
+                'winkel': ['winkel', 'winkels', 'supermarkt', 'boodschappen', 'bakker', 'slager'],
+                'fiets': ['fiets', 'fietsen', 'fietshuur', 'fietsverhuur', 'fietspad', 'tour'],
+                'transport': ['bus', 'taxi', 'trein', 'vervoer', 'transport', 'reizen', 'rit'],
+                'huisdier': ['hond', 'kat', 'huisdier', 'huisdieren', 'beestje']
+            };
+
+            const STOPWORDS = new Set(['de','het','een','en','of','is','zijn','was','waren','met','voor','op','in','aan','bij','tot','van','naar','dat','die','dit','er','om','wat','hoe','wie','waar','waarom','kan','kun','kunnen','moet','mag','wil','heb','heeft','hebben','wordt','word','worden','niet','wel','ook','nog','maar','als','dan','dus','heel','veel','meer','goed','graag','please','je','jij','jou','u','jullie','we','wij','ze','zij','ik','me','mij','mijn','jouw','onze','hun','laat']);
+
+            // Multi-word phrases die als 1 concept moeten gelden
+            // (anders mist het algoritme bv. "hoe laat" omdat dat 2 tokens zijn)
+            const PHRASE_NORMALIZATIONS = [
+                [/\btot hoe laat\b/g, 'hoelaat'],
+                [/\bhoe laat\b/g, 'hoelaat'],
+                [/\bhoe lang\b/g, 'hoelang'],
+                [/\bhoeveel keer\b/g, 'frequentie'],
+                [/\bin de buurt\b/g, 'omgeving'],
+                [/\bom hoe laat\b/g, 'hoelaat'],
+                [/\bcheck[\s-]?in\b/g, 'inchecken'],
+                [/\bcheck[\s-]?out\b/g, 'uitchecken']
+            ];
+
+            const normalize = (str) => {
+                let s = str.toLowerCase().trim().replace(/[?!.,;:'"()]/g, '');
+                for (const [re, rep] of PHRASE_NORMALIZATIONS) s = s.replace(re, rep);
+                return s;
+            };
+
+            const tokenize = (str) => normalize(str).split(/\s+/).filter(w => w.length > 1 && !STOPWORDS.has(w));
+
+            // Levenshtein distance voor typo-tolerantie (max 2 char verschil)
+            const levenshtein = (a, b) => {
+                if (Math.abs(a.length - b.length) > 2) return 99;
+                const m = [];
+                for (let i = 0; i <= b.length; i++) m[i] = [i];
+                for (let j = 0; j <= a.length; j++) m[0][j] = j;
+                for (let i = 1; i <= b.length; i++) {
+                    for (let j = 1; j <= a.length; j++) {
+                        m[i][j] = b[i-1] === a[j-1]
+                            ? m[i-1][j-1]
+                            : Math.min(m[i-1][j-1] + 1, m[i][j-1] + 1, m[i-1][j] + 1);
+                    }
+                }
+                return m[b.length][a.length];
+            };
+
+            const fuzzyMatch = (word, target) => {
+                if (word === target) return 1.0;
+                if (word.length < 4 || target.length < 4) return word === target ? 1.0 : 0;
+                if (word.includes(target) || target.includes(word)) return 0.9;
+                const dist = levenshtein(word, target);
+                if (dist <= 1) return 0.85;
+                if (dist === 2 && Math.min(word.length, target.length) >= 6) return 0.7;
+                return 0;
+            };
+
+            const expandWithSynonyms = (tokens) => {
+                const expanded = new Set(tokens);
+                tokens.forEach(t => {
+                    for (const [concept, synonyms] of Object.entries(synonymsMap)) {
+                        const allTerms = [concept, ...synonyms];
+                        if (allTerms.some(term => term === t || (term.length > 3 && t.includes(term)) || (t.length > 3 && term.includes(t)))) {
+                            expanded.add(concept);
+                            synonyms.forEach(s => expanded.add(s));
+                        }
+                    }
+                });
+                return expanded;
+            };
+
+            // Bouw IDF: woorden die in veel FAQs voorkomen wegen minder zwaar
+            // (bv. "open", "tot", "uur" matchen overal en discrimineren niet).
+            let _idfCache = null;
+            const buildIdf = (faqList) => {
+                const docFreq = {};
+                const N = faqList.length;
+                faqList.forEach(faq => {
+                    const tokens = new Set(tokenize(`${faq.question} ${faq.context || ''}`));
+                    tokens.forEach(t => { docFreq[t] = (docFreq[t] || 0) + 1; });
+                });
+                const idf = {};
+                for (const [t, df] of Object.entries(docFreq)) {
+                    idf[t] = Math.log((N + 1) / (df + 1)) + 1;
+                }
+                return idf;
+            };
+
+            const getIdf = () => {
+                if (!_idfCache && faqs.length > 0) {
+                    _idfCache = buildIdf(faqs);
+                }
+                return _idfCache || {};
+            };
+
+            // Genereer alle relevante zoek-tokens (origineel + synoniem-varianten) per query token
+            const tokenWithSynonyms = (token) => {
+                const variants = new Set([token]);
+                for (const [concept, synonyms] of Object.entries(synonymsMap)) {
+                    const allTerms = [concept, ...synonyms];
+                    if (allTerms.some(term => term === token)) {
+                        variants.add(concept);
+                        synonyms.forEach(s => variants.add(s));
+                    }
+                }
+                return variants;
+            };
+
+            // Match een query token tegen een veld; geeft beste match-score (0-1)
+            const findInField = (queryToken, fieldTokens) => {
+                const variants = tokenWithSynonyms(queryToken);
+                let best = 0;
+                for (const v of variants) {
+                    if (fieldTokens.has(v)) {
+                        best = Math.max(best, v === queryToken ? 1.0 : 0.85);
+                    }
+                }
+                if (best === 1.0) return best;
+                // Fuzzy fallback alleen op originele token (typo-tolerantie)
+                for (const ft of fieldTokens) {
+                    const s = fuzzyMatch(queryToken, ft);
+                    if (s > best) best = s;
+                }
+                return best;
+            };
+
+            const scoreMatch = (questionTokens, faq, idf) => {
+                if (questionTokens.length === 0) return 0;
+
+                const qTokensSet = new Set(tokenize(faq.question));
+                const cTokensSet = new Set(tokenize(faq.context || ''));
+                const aTokensSet = new Set(tokenize(faq.answer));
+                const catTokensSet = new Set(tokenize(faq.category || ''));
+
+                // Gewichten: vraag-tekst van FAQ telt 4x (sterk), categorie 2x,
+                // context 1.2x (lager om "niet over X" false positives te dempen),
+                // antwoord 1x.
+                const FIELD_WEIGHTS = { q: 4.0, c: 1.2, cat: 2.0, a: 1.0 };
+
+                let totalScore = 0;
+                let totalIdf = 0;
+
+                questionTokens.forEach(qt => {
+                    const tokenIdf = idf[qt] || 1.5;
+                    totalIdf += tokenIdf;
+
+                    const qScore = findInField(qt, qTokensSet);
+                    const cScore = findInField(qt, cTokensSet);
+                    const catScore = findInField(qt, catTokensSet);
+                    const aScore = findInField(qt, aTokensSet);
+
+                    // Beste veld-match bepalen, vermenigvuldigd met veld-gewicht
+                    const fieldHit = Math.max(
+                        qScore * FIELD_WEIGHTS.q,
+                        cScore * FIELD_WEIGHTS.c,
+                        catScore * FIELD_WEIGHTS.cat,
+                        aScore * FIELD_WEIGHTS.a
+                    );
+
+                    totalScore += (fieldHit / FIELD_WEIGHTS.q) * tokenIdf;
+                });
+
+                return totalIdf > 0 ? totalScore / totalIdf : 0;
+            };
+
+            const findRelevantFAQ = (question) => {
+                console.log('[BOT] findRelevantFAQ START — faqs lengte:', faqs?.length ?? 'undefined');
+                if (!faqs || faqs.length === 0) {
+                    console.log('%c[BOT] ⚠️ GEEN FAQs geladen!', 'color: red; font-weight: bold', 'faqs =', faqs);
+                    return null;
+                }
+                const qTokens = tokenize(question);
+                console.log('[BOT] Tokens na normalisatie:', qTokens);
+                if (qTokens.length === 0) {
+                    console.log('%c[BOT] ⚠️ Geen bruikbare tokens', 'color: orange');
+                    return null;
+                }
+
+                const idf = getIdf();
+
+                const scored = faqs.map(faq => ({ faq, score: scoreMatch(qTokens, faq, idf) }));
+                scored.sort((a, b) => b.score - a.score);
+
+                console.log('[BOT] Aantal FAQs gescoord:', faqs.length);
+                console.log('[BOT] Top 3:', scored.slice(0, 3).map(s => `${(s.score*100).toFixed(0)}% — ${s.faq.category}: "${s.faq.question}"`));
+
+                const bestMatch = scored[0];
+                const bestScore = bestMatch.score;
+                const runnerUp = scored[1]?.score || 0;
+
+                if (bestScore >= 0.30) {
+                    const margin = bestScore - runnerUp;
+                    const lowConfidence = bestScore < 0.55 || margin < 0.08;
+                    return { ...bestMatch, lowConfidence };
+                }
+                console.log('[BOT] Beste score', (bestScore*100).toFixed(0)+'%', 'haalt drempel 30% niet → geen match');
+                return null;
+            };
+
+            const handleSend = async () => {
+                if (!input.trim()) return;
+
+                console.log('%c[BOT] === Nieuwe vraag ===', 'color: #4472C4; font-weight: bold');
+                console.log('[BOT] Vraag:', input);
+
+                const userMessage = {
+                    id: Date.now(),
+                    type: 'user',
+                    text: input,
+                    timestamp: new Date()
+                };
+
+                setMessages(prev => [...prev, userMessage]);
+                setInput('');
+                setTyping(true);
+
+                const userQuestion = input;
+
+                // Bepaal taal: lock op de eerste vraag van de gebruiker.
+                let language = sessionLanguage;
+                if (!language) {
+                    language = detectLanguage(userQuestion);
+                    setSessionLanguage(language);
+                }
+                console.log('[BOT] Taal:', language);
+
+                const claudeAvailable = aiSettings.enabled && aiSettings.apiKey && aiSettings.apiKey.startsWith('sk-ant-');
+                console.log('[BOT] Claude beschikbaar?', claudeAvailable, '(enabled:', aiSettings.enabled, ', heeft sleutel:', !!aiSettings.apiKey, ')');
+
+                let botMessage = null;
+                let debugInfo = { language, claudeAvailable, layers: [] };
+
+                // ===== LAAG 1: Cache lookup =====
+                console.log('[BOT] LAAG 1: Cache opzoeken...');
+                const cacheHit = lookupCache(userQuestion, language);
+                if (cacheHit && cacheHit.answer) {
+                    console.log('%c[BOT] ✅ Cache HIT', 'color: green', cacheHit);
+                    debugInfo.layers.push({ layer: 'cache', result: 'hit', ...cacheHit });
+                    const cachedFaq = faqs.find(f => f.id === cacheHit.faq_id);
+                    bumpCacheHit(language, cacheHit.normalizedQ);
+                    botMessage = {
+                        id: Date.now() + 1,
+                        type: 'bot',
+                        text: cacheHit.answer,
+                        faq: cachedFaq || null,
+                        source: 'cache',
+                        language,
+                        cacheKey: cacheHit.normalizedQ,
+                        userQuestion,
+                        timestamp: new Date()
+                    };
+                }
+
+                if (!cacheHit) {
+                    console.log('[BOT] Cache miss');
+                    debugInfo.layers.push({ layer: 'cache', result: 'miss' });
+                }
+
+                // ===== LAAG 2: Claude API =====
+                let claudeSaidNoMatch = false;
+                if (!botMessage && claudeAvailable) {
+                    console.log('[BOT] LAAG 2: Claude API aanroepen...');
+                    try {
+                        const result = await askClaude(userQuestion, faqs, aiSettings, language);
+                        console.log('[BOT] Claude raw resultaat:', result);
+                        debugInfo.layers.push({ layer: 'claude', result: result.matched ? 'matched' : 'no-match', ...result });
+                        if (result.matched) {
+                            const matchedFaq = result.faq_id ? faqs.find(f => f.id === result.faq_id) : null;
+
+                            // Schrijf naar cache (alleen als we een echte faq_id hebben)
+                            if (result.faq_id && matchedFaq && result.answer) {
+                                writeCache(userQuestion, language, result.faq_id, result.answer);
+                            }
+
+                            botMessage = {
+                                id: Date.now() + 1,
+                                type: 'bot',
+                                text: result.answer,
+                                faq: matchedFaq || (result.category ? { category: result.category } : null),
+                                source: 'claude',
+                                language,
+                                userQuestion,
+                                timestamp: new Date()
+                            };
+                        } else {
+                            // Claude zegt geen match — markeer maar geef lokale algoritme nog een kans
+                            claudeSaidNoMatch = true;
+                            console.log('%c[BOT] ⚠️ Claude zei matched:false', 'color: orange');
+                        }
+                    } catch (err) {
+                        console.error('%c[BOT] ❌ Claude API faalde:', 'color: red', err.message);
+                        debugInfo.layers.push({ layer: 'claude', result: 'error', error: err.message });
+                    }
+                } else if (!botMessage && !claudeAvailable) {
+                    console.log('[BOT] LAAG 2 overgeslagen: Claude is niet ingeschakeld of geen sleutel');
+                }
+
+                // ===== LAAG 3: Lokaal algoritme (fallback) =====
+                if (!botMessage) {
+                    const skipLocal = claudeSaidNoMatch && language !== 'nl';
+                    console.log('[BOT] LAAG 3: Lokaal algoritme', skipLocal ? '(overgeslagen vanwege non-NL na Claude-no-match)' : 'proberen...');
+
+                    if (!skipLocal) {
+                        const match = findRelevantFAQ(userQuestion);
+                        console.log('[BOT] Lokaal resultaat:', match ? `score ${(match.score*100).toFixed(0)}% op "${match.faq.question}"` : 'geen match');
+                        debugInfo.layers.push({ layer: 'local', result: match ? 'match' : 'no-match', match });
+                        if (match) {
+                            let answerText = match.faq.answer;
+                            if (match.lowConfidence) {
+                                answerText = `${t('lowConfPrefix', language)}\n\n${match.faq.answer}\n\n${t('lowConfSuffix', language)}`;
+                            }
+                            botMessage = {
+                                id: Date.now() + 1,
+                                type: 'bot',
+                                text: answerText,
+                                faq: match.faq,
+                                source: 'local',
+                                language,
+                                lowConfidence: match.lowConfidence,
+                                userQuestion,
+                                timestamp: new Date()
+                            };
+                        }
+                    }
+
+                    // Als nog steeds niets gevonden: escaleer
+                    if (!botMessage) {
+                        console.log('%c[BOT] ❌ Niets gevonden — escaleren', 'color: red');
+                        savePendingQuestion(userQuestion);
+                        botMessage = {
+                            id: Date.now() + 1,
+                            type: 'bot',
+                            text: claudeSaidNoMatch ? t('notFoundClaude', language) : t('notFoundLocal', language),
+                            notFound: true,
+                            source: 'local',
+                            language,
+                            userQuestion,
+                            timestamp: new Date()
+                        };
+                    }
+                }
+
+                botMessage.debugInfo = debugInfo;
+                console.log('[BOT] === Klaar ===', botMessage.source);
+                setMessages(prev => [...prev, botMessage]);
+                setTyping(false);
+            };
+
+            const suggestedQuestions = [
+                'Wat zijn de openingstijden van de bar?',
+                'Hoe laat is het zwembad open?',
+                'Hoe kan ik contact opnemen?',
+                'Wat zijn de regels op de camping?'
+            ];
+
+            if (loading) {
+                return (
+                    <div className="chat-container">
+                        <div className="chat-header">
+                            <h1>Quinta Valbom Chat</h1>
+                        </div>
+                        <div className="loading">Bezig met laden...</div>
+                    </div>
+                );
+            }
+
+            return (
+                <div className="chat-container">
+                    <div className="chat-header">
+                        <h1>🏕️ Quinta Valbom Chat</h1>
+                        <p>Stel je vragen over onze camping</p>
+                    </div>
+
+                    <div className="chat-messages">
+                        {messages.length === 1 && (
+                            <div className="empty-state">
+                                <h3>Welkom! 👋</h3>
+                                <p>Stel een vraag over de camping</p>
+                                <div>
+                                    {suggestedQuestions.map((q, i) => (
+                                        <button
+                                            key={i}
+                                            className="suggestion-button"
+                                            onClick={() => {
+                                                setInput(q);
+                                            }}
+                                        >
+                                            {q}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+
+                        {messages.map((msg) => (
+                            <div key={msg.id} className={`message ${msg.type}`}>
+                                <div>
+                                    <div className="message-content">
+                                        {msg.text.split('\n').map((line, i) => (
+                                            <React.Fragment key={i}>
+                                                {line}
+                                                {i < msg.text.split('\n').length - 1 && <br/>}
+                                            </React.Fragment>
+                                        ))}
+                                        {msg.faq && msg.faq.category && (
+                                            <div className="faq-source">
+                                                {t('category', msg.language)}: <strong>{msg.faq.category}</strong>
+                                            </div>
+                                        )}
+                                        {aiSettings.debug && msg.type === 'bot' && msg.debugInfo && (
+                                            <div style={{ marginTop: '10px', padding: '8px 10px', background: '#fff8e1', border: '1px dashed #f9a825', borderRadius: '6px', fontSize: '11px', fontFamily: 'monospace', color: '#5d4037' }}>
+                                                <div><strong>🐛 Debug</strong> — bron: <strong>{msg.source}</strong> · taal: {msg.debugInfo.language} · Claude: {msg.debugInfo.claudeAvailable ? 'aan' : 'uit'}</div>
+                                                {msg.debugInfo.layers.map((l, i) => (
+                                                    <div key={i} style={{ marginTop: '4px' }}>
+                                                        Laag {i+1} ({l.layer}): <strong>{l.result}</strong>
+                                                        {l.faq_id && ` → faq #${l.faq_id}`}
+                                                        {l.match && ` → "${l.match.faq.question}" (${(l.match.score*100).toFixed(0)}%)`}
+                                                        {l.error && ` → ${l.error}`}
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        )}
+                                        {msg.notFound && (
+                                            <div className="not-found">
+                                                ⚠️ Geen relevant antwoord gevonden
+                                            </div>
+                                        )}
+
+                                        {msg.type === 'bot' && (
+                                            <div className="feedback-buttons">
+                                                <button
+                                                    className="feedback-btn helpful"
+                                                    onClick={() => markFeedback(msg.id, true)}
+                                                >
+                                                    {t('helpful', msg.language)}
+                                                </button>
+                                                <button
+                                                    className="feedback-btn unhelpful"
+                                                    onClick={() => markFeedback(msg.id, false)}
+                                                >
+                                                    {t('unhelpful', msg.language)}
+                                                </button>
+                                            </div>
+                                        )}
+                                    </div>
+                                    <div className="message-meta">
+                                        {msg.timestamp.toLocaleTimeString('nl-NL', {
+                                            hour: '2-digit',
+                                            minute: '2-digit'
+                                        })}
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+
+                        {typing && (
+                            <div className="message bot">
+                                <div className="typing-indicator">
+                                    <div className="typing-dot"></div>
+                                    <div className="typing-dot"></div>
+                                    <div className="typing-dot"></div>
+                                </div>
+                            </div>
+                        )}
+
+                        {feedbackMessage && (
+                            <div style={{ textAlign: 'center', padding: '10px', color: '#4472C4', fontSize: '13px' }}>
+                                {feedbackMessage}
+                            </div>
+                        )}
+
+                        <div ref={messagesEndRef} />
+                    </div>
+
+                    <div className="chat-input-area">
+                        <input
+                            type="text"
+                            placeholder={t('placeholder', sessionLanguage)}
+                            value={input}
+                            onChange={(e) => setInput(e.target.value)}
+                            onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+                            disabled={typing}
+                        />
+                        <button onClick={handleSend} disabled={typing || !input.trim()}>
+                            {t('send', sessionLanguage)}
+                        </button>
+                    </div>
+                </div>
+            );
+        };
+
+        ReactDOM.render(<ChatApp />, document.getElementById('root'));
+    </script>
+</body>
+</html>

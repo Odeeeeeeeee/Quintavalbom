@@ -1,0 +1,1617 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Quinta Valbom FAQ Admin</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script id="embedded-faqs" type="application/json">
+{
+  "faqs": [
+    {
+      "id": 1,
+      "category": "Eten & Drinken",
+      "question": "Wat zijn de openingstijden van de bar?",
+      "answer": "De bar is open van 8:30-11:30 uur voor drinken, koffie en verse broodjes. 's Middags van 15:00-19:00 uur (16:00-19:00 laagseizoen) voor wijntjes, biertjes en ijsjes. Gesloten op zondag.",
+      "status": "PDF",
+      "source": "Brochure",
+      "context": "Openingstijden bar, uren drinken, koffie, terras, wanneer open. Dit is over de bar faciliteiten, niet over receptie of camping."
+    },
+    {
+      "id": 2,
+      "category": "Eten & Drinken",
+      "question": "Kan ik mijn eigen drinken en eten meenemen naar de bar?",
+      "answer": "Nee, je bent niet toegestaan je eigen drinken of eten te nuttigen bij de bar of op het terras.",
+      "status": "PDF",
+      "source": "Brochure",
+      "context": "Bar regels, drinken, eten, meebrengen, picknick, terras. Gaat over bar faciliteiten en regels."
+    },
+    {
+      "id": 3,
+      "category": "Eten & Drinken",
+      "question": "Bieden jullie maaltijden aan?",
+      "answer": "Ja, op bepaalde avonden bieden we gezonde maaltijden aan. Het menu en moment worden op de receptie/bar aangegeven. Je moet je aanmelden en voortijds reserveren omdat er beperkt plaats is.",
+      "status": "PDF",
+      "source": "Brochure",
+      "context": "Eten, maaltijden, diner, restaurantservice, reservering. Bar en eten faciliteiten."
+    },
+    {
+      "id": 4,
+      "category": "Zwemmen",
+      "question": "Wat zijn de openingstijden van het zwembad?",
+      "answer": "Het zwembad is iedere dag open van 9:00 tot 19:00 uur.",
+      "status": "PDF",
+      "source": "Brochure",
+      "context": "Dit gaat over de zwembad faciliteiten, hoe laat je kunt zwemmen, baden, waterpret. Niet over uitchecken of campinguren."
+    },
+    {
+      "id": 5,
+      "category": "Zwemmen",
+      "question": "Wat zijn de regels voor het zwembad?",
+      "answer": "Gebruik op eigen risico. Kinderen moeten onder begeleiding zijn. Geen glas meenemen naar het zwembad.",
+      "status": "PDF",
+      "source": "Brochure",
+      "context": "Zwembadrегels, veiligheid water, kinderen baden, glasregels. Over waterveiligheid en zwembad faciliteiten."
+    },
+    {
+      "id": 6,
+      "category": "Parking & Auto's",
+      "question": "Mag ik met mijn auto naar mijn campingplaats rijden?",
+      "answer": "Ja, voor het uit- en inladen mag je naar de campingplaats rijden. Daarna moet de auto op de parkeerplaats blijven staan.",
+      "status": "PDF",
+      "source": "Brochure",
+      "context": "Auto, parkeren, rijden, camping plaats, voertuig, vervoer. Over parkeerregels en auto's op camping."
+    },
+    {
+      "id": 7,
+      "category": "Parking & Auto's",
+      "question": "Waar moet ik mijn auto parkeren?",
+      "answer": "Na het uit- en inladen van je spullen moet de auto op de parkeerplaats blijven staan.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 8,
+      "category": "Faciliteiten",
+      "question": "Is het kraanwater drinkbaar?",
+      "answer": "Ja, ons kraanwater is natuurlijk gezuiverd en drinkbaar. Het komt uit onze waterbron.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 9,
+      "category": "Faciliteiten",
+      "question": "Hoe betaal ik aan de bar?",
+      "answer": "Aan de bar is alleen contant betalen mogelijk. In het dorpje Gandarela de Basto is een pinautomaat.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 10,
+      "category": "Faciliteiten",
+      "question": "Hoe vaak wordt het toiletgebouw schoongemaakt?",
+      "answer": "Het toiletgebouw wordt iedere dag schoongemaakt.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 11,
+      "category": "Faciliteiten",
+      "question": "Wat kan ik in het toilet doorspelen?",
+      "answer": "Alleen wc papier kan in het toilet worden doorgespoeld. Andere zaken horen in de prullenbak.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 12,
+      "category": "Afval",
+      "question": "Hoe zit het met het chemisch afval van mijn toilet?",
+      "answer": "Er is geen stort voor chemisch afval op de camping. Je afval kan je gescheiden kwijt in de vuilnisbakken op de parkeerplaats en langs de weg bij de ingang.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 13,
+      "category": "Wassen",
+      "question": "Kan ik mijn was doen?",
+      "answer": "Ja, wassen kan op bepaalde momenten van de dag met wasmiddel dat bij ons te verkrijgen is. Schrijf je in bij de bar.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 14,
+      "category": "Check-out & Transport",
+      "question": "Tot hoe laat kan ik uitchecken?",
+      "answer": "Uitchecken graag voor 11:00 uur.",
+      "status": "PDF",
+      "source": "Brochure",
+      "context": "Vertrekken, accommodatie verlaten, inchecktijden, reserveringen. Dit is over camping accommodatie, niet over zwembad, bar of andere faciliteiten."
+    },
+    {
+      "id": 15,
+      "category": "Check-out & Transport",
+      "question": "Zijn er bussen in de buurt?",
+      "answer": "Ja, er vertrekken bussen vanuit Gandarela de Basto naar kleine plaatsen en grote steden in de omgeving.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 16,
+      "category": "Check-out & Transport",
+      "question": "Hoe kan ik een taxi bellen?",
+      "answer": "Je kunt lokale taxi Julio bereiken op +351 968 035 736.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 17,
+      "category": "Veiligheid & Richtlijnen",
+      "question": "Mag ik een bbq gebruiken?",
+      "answer": "Nee, bbq is niet toegestaan op de camping vanwege brandgevaar.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 18,
+      "category": "Veiligheid & Richtlijnen",
+      "question": "Mag ik eten buiten laten staan?",
+      "answer": "Nee, laat geen eten buiten staan.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 19,
+      "category": "Veiligheid & Richtlijnen",
+      "question": "Wat moet ik doen als ik bezoek krijg?",
+      "answer": "Bezoek van buiten de camping? Graag even melden.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 20,
+      "category": "Veiligheid & Richtlijnen",
+      "question": "Wat zijn de rusttijden op de camping?",
+      "answer": "Na 22:00 uur is het stil op de camping. Onze gasten stellen ontspanning & rust erg op prijs.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 21,
+      "category": "Contact & Noodgevallen",
+      "question": "Hoe kan ik de eigenaren bereiken?",
+      "answer": "Telefoon/WhatsApp: +351910348399, E-mail: motho@quintavalbom.nl, Web: www.quintavalbom.nl",
+      "status": "PDF",
+      "source": "Brochure",
+      "context": "Contact, eigenaren, telefoon, whatsapp, email, bereiken, informatie. Over hoe je de camping kunt contacteren."
+    },
+    {
+      "id": 22,
+      "category": "Contact & Noodgevallen",
+      "question": "Wat is het Europese alarmnummer?",
+      "answer": "Het Europese alarmnummer is 112.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 23,
+      "category": "Contact & Noodgevallen",
+      "question": "Hoe bereik ik een ambulance?",
+      "answer": "Ambulance Gandarela de Basto: +351 255 655 143",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 24,
+      "category": "Wifi & Overig",
+      "question": "Wat is het Wifi-wachtwoord?",
+      "answer": "Quinta Valbom Wifi: HappyHolidays!",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 25,
+      "category": "Wifi & Overig",
+      "question": "Wat zijn de pauzetijden?",
+      "answer": "Tussen 12:00 en 15:00 uur pauzeren we. Bij nood ben je bereikbaar via WhatsApp/SMS.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 26,
+      "category": "Over Quinta Valbom",
+      "question": "Wie zijn de eigenaren?",
+      "answer": "Moniek en Thomas zijn de eigenaren van Quinta Valbom. Ze hebben de camping opgericht omdat ze op zoek waren naar meer vrijheid, verbinding, buitenleven en betekenis.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 27,
+      "category": "Tips & Activiteiten",
+      "question": "Wat zijn leuke dingen om in de buurt te doen?",
+      "answer": "Er zijn veel activiteiten: wandelen naar Mondim de Basto, wijnproeverijen bij Santa Cristina of Villa Seara, Jeep tours, waterpark in Fafe of Amarante, Pena Aventura Park. Zie ook de kaart in de brochure voor meer tips.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 28,
+      "category": "Tips & Activiteiten",
+      "question": "Zijn er winkels in de omgeving?",
+      "answer": "Ja, in Gandarela de Basto (5 min rijden) zijn supermarkt, groente- en fruitboer, bakkerij. In Cabeceiras de Basto (15 min) zijn grotere supermarkten als Continente en Intermarché.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 29,
+      "category": "Tips & Activiteiten",
+      "question": "Hoe kom ik aan informatie over fietsen?",
+      "answer": "Je kunt informatie over fietstochten en fietsverhuur krijgen bij de bar. Er is een ecopista fietspad van Arco de Baúlhe via Mondim en Celorico naar Amarante.",
+      "status": "PDF",
+      "source": "Brochure"
+    }
+  ],
+  "categories": [
+    "Afval",
+    "Check-out & Transport",
+    "Contact & Noodgevallen",
+    "Eten & Drinken",
+    "Faciliteiten",
+    "Over Quinta Valbom",
+    "Parking & Auto's",
+    "Tips & Activiteiten",
+    "Veiligheid & Richtlijnen",
+    "Wassen",
+    "Wifi & Overig",
+    "Zwemmen"
+  ]
+}
+    </script>
+    <script>
+        try {
+            window.QUINTA_EMBEDDED_FAQS = JSON.parse(document.getElementById('embedded-faqs').textContent);
+            console.log('[QuintaAdmin] Embedded FAQs:', window.QUINTA_EMBEDDED_FAQS.faqs.length, 'stuks');
+        } catch (e) {
+            console.warn('[QuintaAdmin] Kon embedded FAQs niet parsen:', e);
+        }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #4472C4 0%, #2E5C8A 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin-bottom: 5px;
+            font-size: 28px;
+        }
+
+        header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .toolbar {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        input[type="text"],
+        select {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+        }
+
+        input[type="text"]:focus,
+        select:focus {
+            outline: none;
+            border-color: #4472C4;
+            box-shadow: 0 0 0 3px rgba(68, 114, 196, 0.1);
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #4472C4;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background: #2E5C8A;
+        }
+
+        button.secondary {
+            background: #666;
+        }
+
+        button.secondary:hover {
+            background: #444;
+        }
+
+        button.danger {
+            background: #d32f2f;
+        }
+
+        button.danger:hover {
+            background: #b71c1c;
+        }
+
+        button.success {
+            background: #388e3c;
+        }
+
+        button.success:hover {
+            background: #2e7d32;
+        }
+
+        .faq-list {
+            display: grid;
+            gap: 15px;
+        }
+
+        .faq-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            transition: all 0.2s;
+        }
+
+        .faq-card:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-color: #4472C4;
+        }
+
+        .faq-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 10px;
+        }
+
+        .faq-category {
+            display: inline-block;
+            background: #E8F1F8;
+            color: #4472C4;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .faq-question {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1a1a1a;
+        }
+
+        .faq-answer {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .faq-actions {
+            display: flex;
+            gap: 10px;
+            padding-top: 12px;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .faq-actions button {
+            padding: 8px 16px;
+            font-size: 13px;
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .modal h2 {
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .form-group input[type="text"],
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            padding-top: 20px;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: bold;
+            color: #4472C4;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #999;
+            margin-top: 8px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #999;
+        }
+
+        .empty-state p {
+            margin-bottom: 15px;
+        }
+
+        .alert {
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .alert.success {
+            background: #E8F5E9;
+            color: #2E7D32;
+            border: 1px solid #C8E6C9;
+        }
+
+        .alert.info {
+            background: #E3F2FD;
+            color: #1976D2;
+            border: 1px solid #BBDEFB;
+        }
+
+        .search-input {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .file-input-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .file-input-wrapper input[type="file"] {
+            display: none;
+        }
+
+        .category-list {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .category-badge {
+            background: #E8F1F8;
+            color: #4472C4;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .category-badge button {
+            background: none;
+            border: none;
+            color: #4472C4;
+            cursor: pointer;
+            padding: 0;
+            font-size: 16px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .tab-button {
+            padding: 12px 20px;
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            color: #666;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .tab-button.active {
+            color: #4472C4;
+            border-bottom-color: #4472C4;
+        }
+
+        .tab-button:hover {
+            background: none;
+            color: #4472C4;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useCallback } = React;
+
+        const FAQAdmin = () => {
+            const [faqs, setFaqs] = useState([]);
+            const [categories, setCategories] = useState([]);
+            const [searchTerm, setSearchTerm] = useState('');
+            const [selectedCategory, setSelectedCategory] = useState('');
+            const [showModal, setShowModal] = useState(false);
+            const [editingId, setEditingId] = useState(null);
+            const [formData, setFormData] = useState({ category: '', question: '', answer: '' });
+            const [activeTab, setActiveTab] = useState('faqs');
+            const [newCategory, setNewCategory] = useState('');
+            const [message, setMessage] = useState('');
+            const [loading, setLoading] = useState(true);
+            const [pendingQuestions, setPendingQuestions] = useState([]);
+            const [editingPendingId, setEditingPendingId] = useState(null);
+            const [pendingFormData, setPendingFormData] = useState({ category: '', answer: '' });
+            const [aiSettings, setAiSettings] = useState({
+                apiKey: '',
+                model: 'claude-haiku-4-5',
+                enabled: false,
+                temperature: 0.5,
+                debug: false
+            });
+            const [aiTestStatus, setAiTestStatus] = useState(null); // null | 'testing' | 'success' | 'error'
+            const [aiTestMessage, setAiTestMessage] = useState('');
+            const [showApiKey, setShowApiKey] = useState(false);
+            const [questionCache, setQuestionCache] = useState({});
+            const [cacheLanguageFilter, setCacheLanguageFilter] = useState('all');
+
+            const reloadCache = () => {
+                try {
+                    const raw = localStorage.getItem('quinta_question_cache');
+                    setQuestionCache(raw ? JSON.parse(raw) : {});
+                } catch (e) { setQuestionCache({}); }
+            };
+
+            useEffect(() => { reloadCache(); }, []);
+
+            // Load FAQs and categories - prioritize localStorage, fallback to JSON
+            useEffect(() => {
+                const loadData = async () => {
+                    // Eerst checken of er data in localStorage is
+                    const savedFaqs = localStorage.getItem('quinta_faqs');
+                    const savedCategories = localStorage.getItem('quinta_categories');
+                    const savedPending = localStorage.getItem('quinta_pending_questions');
+
+                    let useLocalStorage = false;
+                    if (savedFaqs && savedCategories) {
+                        try {
+                            const parsedFaqs = JSON.parse(savedFaqs);
+                            if (Array.isArray(parsedFaqs) && parsedFaqs.length > 0) {
+                                setFaqs(parsedFaqs);
+                                setCategories(JSON.parse(savedCategories));
+                                if (savedPending) {
+                                    setPendingQuestions(JSON.parse(savedPending));
+                                }
+                                setLoading(false);
+                                useLocalStorage = true;
+                            }
+                        } catch (e) {}
+                    }
+                    if (!useLocalStorage) {
+                        // Eerst proberen via embedded data (werkt ook met file:// in Safari)
+                        if (window.QUINTA_EMBEDDED_FAQS?.faqs?.length) {
+                            const embed = window.QUINTA_EMBEDDED_FAQS;
+                            setFaqs(embed.faqs);
+                            setCategories(embed.categories || []);
+                            localStorage.setItem('quinta_faqs', JSON.stringify(embed.faqs));
+                            localStorage.setItem('quinta_categories', JSON.stringify(embed.categories || []));
+                            if (savedPending) setPendingQuestions(JSON.parse(savedPending));
+                            setLoading(false);
+                            showMessage(`FAQs geladen uit ingebouwde data (${embed.faqs.length} stuks)`);
+                        } else {
+                            // Fallback: fetch (werkt op een server)
+                            try {
+                                const response = await fetch('faq_data.json');
+                                const data = await response.json();
+                                setFaqs(data.faqs);
+                                setCategories(data.categories);
+                                localStorage.setItem('quinta_faqs', JSON.stringify(data.faqs));
+                                localStorage.setItem('quinta_categories', JSON.stringify(data.categories));
+                                if (savedPending) setPendingQuestions(JSON.parse(savedPending));
+                                setLoading(false);
+                                showMessage('FAQs geladen uit Excel!');
+                            } catch (err) {
+                                console.log('faq_data.json niet gevonden en geen embedded data');
+                                if (savedPending) setPendingQuestions(JSON.parse(savedPending));
+                                setLoading(false);
+                            }
+                        }
+                    }
+                };
+
+                loadData();
+            }, []);
+
+            // Save FAQs to localStorage
+            useEffect(() => {
+                if (faqs.length > 0) {
+                    localStorage.setItem('quinta_faqs', JSON.stringify(faqs));
+                }
+            }, [faqs]);
+
+            // Save categories to localStorage
+            useEffect(() => {
+                if (categories.length > 0) {
+                    localStorage.setItem('quinta_categories', JSON.stringify(categories));
+                }
+            }, [categories]);
+
+            // Save pending questions to localStorage
+            useEffect(() => {
+                localStorage.setItem('quinta_pending_questions', JSON.stringify(pendingQuestions));
+            }, [pendingQuestions]);
+
+            // Load AI settings on mount
+            useEffect(() => {
+                const saved = localStorage.getItem('quinta_ai_settings');
+                if (saved) {
+                    try {
+                        setAiSettings(JSON.parse(saved));
+                    } catch (e) {
+                        console.warn('Kon AI-instellingen niet laden', e);
+                    }
+                }
+            }, []);
+
+            // Save AI settings whenever they change
+            useEffect(() => {
+                localStorage.setItem('quinta_ai_settings', JSON.stringify(aiSettings));
+            }, [aiSettings]);
+
+            const testAIConnection = async () => {
+                if (!aiSettings.apiKey || !aiSettings.apiKey.startsWith('sk-ant-')) {
+                    setAiTestStatus('error');
+                    setAiTestMessage('Vul een geldige Claude API-sleutel in (begint met sk-ant-).');
+                    return;
+                }
+                setAiTestStatus('testing');
+                setAiTestMessage('Bezig met verbinden met Claude...');
+                try {
+                    const response = await fetch('https://api.anthropic.com/v1/messages', {
+                        method: 'POST',
+                        headers: {
+                            'x-api-key': aiSettings.apiKey,
+                            'anthropic-version': '2023-06-01',
+                            'anthropic-dangerous-direct-browser-access': 'true',
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            model: aiSettings.model,
+                            max_tokens: 50,
+                            messages: [{ role: 'user', content: 'Antwoord met exact: OK' }]
+                        })
+                    });
+                    if (!response.ok) {
+                        const errText = await response.text();
+                        throw new Error(`HTTP ${response.status}: ${errText.slice(0, 200)}`);
+                    }
+                    const data = await response.json();
+                    const reply = data?.content?.[0]?.text || '(geen tekst)';
+                    setAiTestStatus('success');
+                    setAiTestMessage(`Verbinding gelukt! Claude antwoordde: "${reply.trim()}"`);
+                } catch (err) {
+                    setAiTestStatus('error');
+                    setAiTestMessage(`Verbinding mislukt: ${err.message}`);
+                }
+            };
+
+            const showMessage = (msg) => {
+                setMessage(msg);
+                setTimeout(() => setMessage(''), 3000);
+            };
+
+            const openAddModal = () => {
+                setEditingId(null);
+                setFormData({ category: '', question: '', answer: '' });
+                setShowModal(true);
+            };
+
+            const openEditModal = (faq) => {
+                setEditingId(faq.id);
+                setFormData(faq);
+                setShowModal(true);
+            };
+
+            // Verwijder alle cache-entries die naar een specifiek faq_id wijzen
+            // (zodat verouderde antwoorden niet uit cache geserveerd worden)
+            const invalidateCacheForFaq = (faqId) => {
+                try {
+                    const raw = localStorage.getItem('quinta_question_cache');
+                    if (!raw) return 0;
+                    const cache = JSON.parse(raw);
+                    let removed = 0;
+                    for (const lang of Object.keys(cache)) {
+                        for (const q of Object.keys(cache[lang])) {
+                            if (cache[lang][q].faq_id === faqId) {
+                                delete cache[lang][q];
+                                removed++;
+                            }
+                        }
+                    }
+                    localStorage.setItem('quinta_question_cache', JSON.stringify(cache));
+                    return removed;
+                } catch (e) { return 0; }
+            };
+
+            const handleSave = () => {
+                if (!formData.category || !formData.question || !formData.answer) {
+                    alert('Alle velden zijn verplicht');
+                    return;
+                }
+
+                if (editingId) {
+                    setFaqs(faqs.map(f => f.id === editingId ? { ...f, ...formData } : f));
+                    const removed = invalidateCacheForFaq(editingId);
+                    showMessage(removed > 0
+                        ? `FAQ bijgewerkt! ${removed} cache-entries opgeschoond.`
+                        : 'FAQ bijgewerkt!');
+                } else {
+                    const newFaq = {
+                        id: Date.now(),
+                        ...formData
+                    };
+                    setFaqs([...faqs, newFaq]);
+                    showMessage('FAQ toegevoegd!');
+                }
+
+                setShowModal(false);
+            };
+
+            const handleDelete = (id) => {
+                if (confirm('Zeker dat je deze FAQ wilt verwijderen?')) {
+                    setFaqs(faqs.filter(f => f.id !== id));
+                    const removed = invalidateCacheForFaq(id);
+                    showMessage(removed > 0
+                        ? `FAQ verwijderd! ${removed} cache-entries opgeschoond.`
+                        : 'FAQ verwijderd!');
+                }
+            };
+
+            const addCategory = () => {
+                if (newCategory && !categories.includes(newCategory)) {
+                    const updatedCategories = [...categories, newCategory];
+                    setCategories(updatedCategories);
+                    localStorage.setItem('quinta_categories', JSON.stringify(updatedCategories));
+                    showMessage('Categorie toegevoegd!');
+                    setNewCategory('');
+                }
+            };
+
+            const removeCategory = (cat) => {
+                if (confirm('Zeker dat je deze categorie wilt verwijderen? FAQs met deze categorie blijven behouden.')) {
+                    const updatedCategories = categories.filter(c => c !== cat);
+                    setCategories(updatedCategories);
+                    localStorage.setItem('quinta_categories', JSON.stringify(updatedCategories));
+                    showMessage('Categorie verwijderd!');
+                }
+            };
+
+            const filteredFaqs = faqs.filter(faq => {
+                const matchSearch = faq.question.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                                  faq.answer.toLowerCase().includes(searchTerm.toLowerCase());
+                const matchCategory = !selectedCategory || faq.category === selectedCategory;
+                return matchSearch && matchCategory;
+            });
+
+            const exportToJson = () => {
+                const data = JSON.stringify(faqs, null, 2);
+                const element = document.createElement('a');
+                element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(data));
+                element.setAttribute('download', 'quinta_faqs.json');
+                element.style.display = 'none';
+                document.body.appendChild(element);
+                element.click();
+                document.body.removeChild(element);
+                showMessage('FAQs geëxporteerd als JSON!');
+            };
+
+            const exportToCSV = () => {
+                const headers = ['ID', 'Categorie', 'Vraag', 'Antwoord'];
+                const rows = faqs.map(f => [f.id, f.category, `"${f.question}"`, `"${f.answer}"`]);
+                const csv = [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
+                const element = document.createElement('a');
+                element.setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv));
+                element.setAttribute('download', 'quinta_faqs.csv');
+                element.style.display = 'none';
+                document.body.appendChild(element);
+                element.click();
+                document.body.removeChild(element);
+                showMessage('FAQs geëxporteerd als CSV!');
+            };
+
+            const handleImportJSON = (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (event) => {
+                        try {
+                            const imported = JSON.parse(event.target.result);
+                            if (Array.isArray(imported)) {
+                                setFaqs(imported);
+                                localStorage.setItem('quinta_faqs', JSON.stringify(imported));
+                                showMessage('FAQs geïmporteerd!');
+                            }
+                        } catch (err) {
+                            alert('Fout bij importeren: ' + err.message);
+                        }
+                    };
+                    reader.readAsText(file);
+                }
+            };
+
+            const answerPendingQuestion = (pendingId) => {
+                const pending = pendingQuestions.find(p => p.id === pendingId);
+                if (pending) {
+                    setEditingPendingId(pendingId);
+                    setPendingFormData({ category: '', answer: '' });
+                }
+            };
+
+            const savePendingAnswer = () => {
+                if (!pendingFormData.category || !pendingFormData.answer) {
+                    alert('Categorie en antwoord zijn verplicht');
+                    return;
+                }
+
+                const pending = pendingQuestions.find(p => p.id === editingPendingId);
+                if (!pending) return;
+
+                // Voeg toe als FAQ
+                const newFaq = {
+                    id: Date.now(),
+                    question: pending.question,
+                    answer: pendingFormData.answer,
+                    category: pendingFormData.category,
+                    status: 'FAQ',
+                    source: 'Uit openstaande vraag'
+                };
+
+                setFaqs([...faqs, newFaq]);
+
+                // Verwijder uit pending
+                const updated = pendingQuestions.filter(p => p.id !== editingPendingId);
+                setPendingQuestions(updated);
+                localStorage.setItem('quinta_pending_questions', JSON.stringify(updated));
+
+                setEditingPendingId(null);
+                showMessage('Antwoord opgeslagen en FAQ aangemaakt!');
+            };
+
+            const deletePendingQuestion = (id) => {
+                if (confirm('Zeker dat je deze vraag wilt verwijderen?')) {
+                    const updated = pendingQuestions.filter(p => p.id !== id);
+                    setPendingQuestions(updated);
+                    localStorage.setItem('quinta_pending_questions', JSON.stringify(updated));
+                    showMessage('Vraag verwijderd');
+                }
+            };
+
+            if (loading) {
+                return (
+                    <div className="container">
+                        <header>
+                            <h1>📚 Quinta Valbom FAQ Admin</h1>
+                        </header>
+                        <div className="alert info">Bezig met laden van FAQs...</div>
+                    </div>
+                );
+            }
+
+            return (
+                <div className="container">
+                    <header>
+                        <h1>📚 Quinta Valbom FAQ Admin</h1>
+                        <p>Beheer je veelgestelde vragen eenvoudig en overzichtelijk</p>
+                    </header>
+
+                    {message && <div className="alert success">{message}</div>}
+
+                    <div className="stats">
+                        <div className="stat-card">
+                            <div className="stat-number">{faqs.length}</div>
+                            <div className="stat-label">FAQs in totaal</div>
+                        </div>
+                        <div className="stat-card">
+                            <div className="stat-number">{categories.length}</div>
+                            <div className="stat-label">Categorieën</div>
+                        </div>
+                        <div className="stat-card">
+                            <div className="stat-number">{new Set(faqs.map(f => f.category)).size}</div>
+                            <div className="stat-label">Gebruikte categorieën</div>
+                        </div>
+                    </div>
+
+                    <div className="tabs">
+                        <button
+                            className={`tab-button ${activeTab === 'faqs' ? 'active' : ''}`}
+                            onClick={() => setActiveTab('faqs')}
+                        >
+                            FAQs ({faqs.length})
+                        </button>
+                        <button
+                            className={`tab-button ${activeTab === 'pending' ? 'active' : ''}`}
+                            onClick={() => setActiveTab('pending')}
+                            style={pendingQuestions.length > 0 ? { color: '#d32f2f', fontWeight: '700' } : {}}
+                        >
+                            🔴 Openstaande Vragen ({pendingQuestions.length})
+                        </button>
+                        <button
+                            className={`tab-button ${activeTab === 'categories' ? 'active' : ''}`}
+                            onClick={() => setActiveTab('categories')}
+                        >
+                            Categorieën ({categories.length})
+                        </button>
+                        <button
+                            className={`tab-button ${activeTab === 'import' ? 'active' : ''}`}
+                            onClick={() => setActiveTab('import')}
+                        >
+                            Import/Export
+                        </button>
+                        <button
+                            className={`tab-button ${activeTab === 'ai' ? 'active' : ''}`}
+                            onClick={() => setActiveTab('ai')}
+                            style={aiSettings.enabled && aiSettings.apiKey ? { color: '#388e3c' } : {}}
+                        >
+                            🤖 AI Instellingen {aiSettings.enabled && aiSettings.apiKey ? '✓' : ''}
+                        </button>
+                        <button
+                            className={`tab-button ${activeTab === 'cache' ? 'active' : ''}`}
+                            onClick={() => { setActiveTab('cache'); reloadCache(); }}
+                        >
+                            💡 Geleerde Vragen ({Object.values(questionCache).reduce((sum, lang) => sum + Object.keys(lang).length, 0)})
+                        </button>
+                    </div>
+
+                    {activeTab === 'faqs' && (
+                        <div>
+                            <div className="toolbar">
+                                <input
+                                    type="text"
+                                    placeholder="Zoeken in vragen en antwoorden..."
+                                    value={searchTerm}
+                                    onChange={(e) => setSearchTerm(e.target.value)}
+                                    className="search-input"
+                                />
+                                <select 
+                                    value={selectedCategory}
+                                    onChange={(e) => setSelectedCategory(e.target.value)}
+                                >
+                                    <option value="">Alle categorieën</option>
+                                    {categories.map(cat => (
+                                        <option key={cat} value={cat}>{cat}</option>
+                                    ))}
+                                </select>
+                                <button onClick={openAddModal}>+ Nieuw FAQ</button>
+                            </div>
+
+                            {filteredFaqs.length === 0 ? (
+                                <div className="empty-state">
+                                    <p>Geen FAQs gevonden</p>
+                                    <button onClick={openAddModal}>Voeg je eerste FAQ toe</button>
+                                </div>
+                            ) : (
+                                <div className="faq-list">
+                                    {filteredFaqs.map(faq => (
+                                        <div key={faq.id} className="faq-card">
+                                            <div className="faq-category">{faq.category}</div>
+                                            <div className="faq-question">{faq.question}</div>
+                                            <div className="faq-answer">{faq.answer}</div>
+                                            <div className="faq-actions">
+                                                <button onClick={() => openEditModal(faq)}>✏️ Bewerk</button>
+                                                <button className="danger" onClick={() => handleDelete(faq.id)}>🗑️ Verwijder</button>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                    )}
+
+                    {activeTab === 'pending' && (
+                        <div>
+                            {pendingQuestions.length === 0 ? (
+                                <div className="empty-state">
+                                    <p>✅ Geen openstaande vragen! Je bent helemaal bij!</p>
+                                </div>
+                            ) : (
+                                <div className="faq-list">
+                                    {pendingQuestions.map(pending => (
+                                        <div key={pending.id} className="faq-card" style={{ borderLeft: '4px solid #d32f2f' }}>
+                                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '10px' }}>
+                                                <div>
+                                                    <div style={{ fontSize: '12px', color: '#d32f2f', fontWeight: '600', marginBottom: '5px' }}>
+                                                        ⏳ OPENSTAANDE VRAAG
+                                                    </div>
+                                                    <div className="faq-question">{pending.question}</div>
+                                                </div>
+                                                <div style={{ fontSize: '12px', color: '#666' }}>
+                                                    Gesteld: {new Date(pending.lastAsked).toLocaleDateString('nl-NL')}
+                                                    <br/>
+                                                    {pending.count}x gevraagd
+                                                </div>
+                                            </div>
+
+                                            {editingPendingId === pending.id ? (
+                                                <div style={{ paddingTop: '15px', borderTop: '1px solid #f0f0f0' }}>
+                                                    <div className="form-group">
+                                                        <label>Categorie *</label>
+                                                        <select
+                                                            value={pendingFormData.category}
+                                                            onChange={(e) => setPendingFormData({...pendingFormData, category: e.target.value})}
+                                                        >
+                                                            <option value="">Selecteer categorie</option>
+                                                            {categories.map(cat => (
+                                                                <option key={cat} value={cat}>{cat}</option>
+                                                            ))}
+                                                        </select>
+                                                    </div>
+
+                                                    <div className="form-group">
+                                                        <label>Antwoord *</label>
+                                                        <textarea
+                                                            value={pendingFormData.answer}
+                                                            onChange={(e) => setPendingFormData({...pendingFormData, answer: e.target.value})}
+                                                            placeholder="Geef een duidelijk antwoord..."
+                                                            style={{
+                                                                width: '100%',
+                                                                padding: '10px 15px',
+                                                                border: '1px solid #ddd',
+                                                                borderRadius: '6px',
+                                                                fontFamily: 'inherit',
+                                                                minHeight: '120px'
+                                                            }}
+                                                        />
+                                                    </div>
+
+                                                    <div style={{ display: 'flex', gap: '10px', paddingTop: '15px' }}>
+                                                        <button
+                                                            className="success"
+                                                            onClick={savePendingAnswer}
+                                                        >
+                                                            ✅ Als FAQ Opslaan
+                                                        </button>
+                                                        <button
+                                                            className="secondary"
+                                                            onClick={() => setEditingPendingId(null)}
+                                                        >
+                                                            Annuleren
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            ) : (
+                                                <div className="faq-actions">
+                                                    <button className="success" onClick={() => answerPendingQuestion(pending.id)}>
+                                                        ✏️ Antwoord Geven
+                                                    </button>
+                                                    <button className="danger" onClick={() => deletePendingQuestion(pending.id)}>
+                                                        🗑️ Verwijderen
+                                                    </button>
+                                                </div>
+                                            )}
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                    )}
+
+                    {activeTab === 'categories' && (
+                        <div>
+                            <div style={{ marginBottom: '20px' }}>
+                                <div className="form-group" style={{ marginBottom: '15px' }}>
+                                    <label>Nieuwe categorie toevoegen:</label>
+                                    <div style={{ display: 'flex', gap: '10px' }}>
+                                        <input
+                                            type="text"
+                                            value={newCategory}
+                                            onChange={(e) => setNewCategory(e.target.value)}
+                                            onKeyPress={(e) => e.key === 'Enter' && addCategory()}
+                                            placeholder="Bijv. Eten & Drinken"
+                                            style={{ flex: 1 }}
+                                        />
+                                        <button onClick={addCategory}>Toevoegen</button>
+                                    </div>
+                                </div>
+
+                                {categories.length === 0 ? (
+                                    <div className="empty-state">
+                                        <p>Nog geen categorieën. Voeg er een toe hierboven!</p>
+                                    </div>
+                                ) : (
+                                    <div>
+                                        <h3 style={{ marginBottom: '15px', fontSize: '16px', fontWeight: '600' }}>Bestaande categorieën:</h3>
+                                        <div className="category-list">
+                                            {categories.map(cat => (
+                                                <div key={cat} className="category-badge">
+                                                    {cat}
+                                                    <button onClick={() => removeCategory(cat)}>×</button>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    )}
+
+                    {activeTab === 'import' && (
+                        <div>
+                            <div className="form-group" style={{ marginBottom: '30px' }}>
+                                <h3 style={{ marginBottom: '15px', fontSize: '16px', fontWeight: '600' }}>Gegevens exporteren:</h3>
+                                <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+                                    <button className="success" onClick={exportToJson}>📥 Exporteer als JSON</button>
+                                    <button className="success" onClick={exportToCSV}>📥 Exporteer als CSV</button>
+                                </div>
+                            </div>
+
+                            <div className="form-group">
+                                <h3 style={{ marginBottom: '15px', fontSize: '16px', fontWeight: '600' }}>Gegevens importeren:</h3>
+                                <label style={{ display: 'block', marginBottom: '10px' }}>JSON bestand importeren:</label>
+                                <div className="file-input-wrapper">
+                                    <button className="secondary">Kies JSON bestand</button>
+                                    <input 
+                                        type="file" 
+                                        accept=".json"
+                                        onChange={handleImportJSON}
+                                    />
+                                </div>
+                                <p style={{ fontSize: '12px', color: '#999', marginTop: '10px' }}>
+                                    Dit vervangt alle huidige FAQs. Zorg dat je eerst een backup hebt!
+                                </p>
+                            </div>
+                        </div>
+                    )}
+
+                    {activeTab === 'cache' && (() => {
+                        const langNames = { nl: '🇳🇱 Nederlands', en: '🇬🇧 English', pt: '🇵🇹 Português', de: '🇩🇪 Deutsch', fr: '🇫🇷 Français' };
+
+                        // Flatten alle entries
+                        const allEntries = [];
+                        for (const [lang, entries] of Object.entries(questionCache)) {
+                            for (const [normalizedQ, data] of Object.entries(entries)) {
+                                allEntries.push({ language: lang, normalizedQ, ...data });
+                            }
+                        }
+
+                        // Filter op taal
+                        const filtered = cacheLanguageFilter === 'all'
+                            ? allEntries
+                            : allEntries.filter(e => e.language === cacheLanguageFilter);
+
+                        // Sorteer op meest gebruikt
+                        filtered.sort((a, b) => (b.hits || 0) - (a.hits || 0));
+
+                        const availableLangs = [...new Set(allEntries.map(e => e.language))];
+
+                        const deleteEntry = (lang, normQ) => {
+                            const cache = { ...questionCache };
+                            if (cache[lang]) {
+                                delete cache[lang][normQ];
+                                if (Object.keys(cache[lang]).length === 0) delete cache[lang];
+                            }
+                            localStorage.setItem('quinta_question_cache', JSON.stringify(cache));
+                            setQuestionCache(cache);
+                            showMessage('Cache-entry verwijderd');
+                        };
+
+                        const clearCache = (lang) => {
+                            const msg = lang === 'all'
+                                ? 'Weet je zeker dat je ALLE geleerde vragen wilt wissen?'
+                                : `Weet je zeker dat je alle vragen in ${langNames[lang] || lang} wilt wissen?`;
+                            if (!confirm(msg)) return;
+                            const cache = { ...questionCache };
+                            if (lang === 'all') {
+                                localStorage.setItem('quinta_question_cache', JSON.stringify({}));
+                                setQuestionCache({});
+                            } else {
+                                delete cache[lang];
+                                localStorage.setItem('quinta_question_cache', JSON.stringify(cache));
+                                setQuestionCache(cache);
+                            }
+                            showMessage('Cache geleegd');
+                        };
+
+                        const totalHits = allEntries.reduce((sum, e) => sum + (e.hits || 0), 0);
+
+                        return (
+                            <div>
+                                <div className="alert info" style={{ marginBottom: '20px' }}>
+                                    <strong>💡 Wat is dit?</strong> Vragen die de chatbot eerder heeft beantwoord worden hier opgeslagen
+                                    (per taal). Bij dezelfde of bijna-identieke vraag (90% match) wordt het antwoord direct uit cache geserveerd
+                                    — geen AI-call nodig. Antwoorden komen altijd live uit de actuele FAQ-tekst.
+                                </div>
+
+                                <div className="stats">
+                                    <div className="stat-card">
+                                        <div className="stat-number">{allEntries.length}</div>
+                                        <div className="stat-label">Geleerde vragen</div>
+                                    </div>
+                                    <div className="stat-card">
+                                        <div className="stat-number">{totalHits}</div>
+                                        <div className="stat-label">Cache-hits totaal</div>
+                                    </div>
+                                    <div className="stat-card">
+                                        <div className="stat-number">{availableLangs.length}</div>
+                                        <div className="stat-label">Talen</div>
+                                    </div>
+                                </div>
+
+                                <div className="toolbar">
+                                    <select
+                                        value={cacheLanguageFilter}
+                                        onChange={(e) => setCacheLanguageFilter(e.target.value)}
+                                    >
+                                        <option value="all">Alle talen</option>
+                                        {availableLangs.map(lang => (
+                                            <option key={lang} value={lang}>{langNames[lang] || lang}</option>
+                                        ))}
+                                    </select>
+                                    <button onClick={reloadCache} className="secondary">🔄 Vernieuwen</button>
+                                    <button
+                                        onClick={() => clearCache(cacheLanguageFilter)}
+                                        className="danger"
+                                        disabled={filtered.length === 0}
+                                    >
+                                        🗑️ {cacheLanguageFilter === 'all' ? 'Alles wissen' : `${langNames[cacheLanguageFilter] || cacheLanguageFilter} wissen`}
+                                    </button>
+                                </div>
+
+                                {filtered.length === 0 ? (
+                                    <div className="empty-state">
+                                        <p>Nog geen geleerde vragen. De cache wordt opgebouwd zodra gasten vragen stellen.</p>
+                                    </div>
+                                ) : (
+                                    <div className="faq-list">
+                                        {filtered.map(entry => {
+                                            const linkedFaq = faqs.find(f => f.id === entry.faq_id);
+                                            return (
+                                                <div key={`${entry.language}-${entry.normalizedQ}`} className="faq-card" style={{ borderLeft: '4px solid #4caf50' }}>
+                                                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '10px' }}>
+                                                        <div style={{ flex: 1 }}>
+                                                            <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginBottom: '8px' }}>
+                                                                <span style={{ fontSize: '12px', background: '#E8F5E9', color: '#2E7D32', padding: '3px 10px', borderRadius: '12px', fontWeight: '600' }}>
+                                                                    {langNames[entry.language] || entry.language}
+                                                                </span>
+                                                                <span style={{ fontSize: '12px', color: '#666' }}>
+                                                                    {entry.hits || 0}× gebruikt
+                                                                </span>
+                                                                {linkedFaq ? (
+                                                                    <span style={{ fontSize: '12px', color: '#4472C4' }}>
+                                                                        → {linkedFaq.category}
+                                                                    </span>
+                                                                ) : (
+                                                                    <span style={{ fontSize: '12px', color: '#d32f2f' }}>
+                                                                        ⚠️ FAQ niet meer beschikbaar
+                                                                    </span>
+                                                                )}
+                                                            </div>
+                                                            <div className="faq-question" style={{ fontSize: '15px' }}>
+                                                                "{entry.originalQuestion || entry.normalizedQ}"
+                                                            </div>
+                                                            <div className="faq-answer" style={{ marginTop: '8px', fontSize: '13px', color: '#666', fontStyle: 'italic' }}>
+                                                                Antwoord: {entry.answer ? entry.answer.slice(0, 200) + (entry.answer.length > 200 ? '...' : '') : '(geen)'}
+                                                            </div>
+                                                        </div>
+                                                        <div style={{ fontSize: '11px', color: '#999', textAlign: 'right', marginLeft: '15px', minWidth: '120px' }}>
+                                                            Laatst: {new Date(entry.lastUsed).toLocaleDateString('nl-NL')}
+                                                            <br/>
+                                                            Sinds: {new Date(entry.firstSeen).toLocaleDateString('nl-NL')}
+                                                        </div>
+                                                    </div>
+                                                    <div className="faq-actions">
+                                                        <button className="danger" onClick={() => deleteEntry(entry.language, entry.normalizedQ)}>
+                                                            🗑️ Verwijder uit cache
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                )}
+                            </div>
+                        );
+                    })()}
+
+                    {activeTab === 'ai' && (
+                        <div>
+                            <div className="alert info" style={{ marginBottom: '20px' }}>
+                                <strong>🤖 Claude AI verbetert antwoorden enorm.</strong> Met een API-sleutel kan de bot vragen écht begrijpen,
+                                synoniemen herkennen, context volgen en natuurlijke antwoorden formuleren — in plaats van alleen woorden te matchen.
+                                <br/><br/>
+                                <strong style={{ color: '#d32f2f' }}>⚠️ Let op:</strong> in deze browser-only opzet is de API-sleutel zichtbaar voor wie de chat-pagina opent.
+                                Voor productie raden we aan om dit via een backend (zoals Supabase Edge Functions) te laten lopen.
+                            </div>
+
+                            <div className="form-group">
+                                <label>Claude AI inschakelen</label>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                                    <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', fontWeight: 'normal' }}>
+                                        <input
+                                            type="checkbox"
+                                            checked={aiSettings.enabled}
+                                            onChange={(e) => setAiSettings({...aiSettings, enabled: e.target.checked})}
+                                            style={{ width: '18px', height: '18px' }}
+                                        />
+                                        Gebruik Claude voor het beantwoorden van vragen
+                                    </label>
+                                </div>
+                                <p style={{ fontSize: '12px', color: '#999', marginTop: '6px' }}>
+                                    Als uitgeschakeld, gebruikt de chat alleen het lokale woord-matching algoritme.
+                                </p>
+                            </div>
+
+                            <div className="form-group">
+                                <label>Claude API-sleutel *</label>
+                                <div style={{ display: 'flex', gap: '8px' }}>
+                                    <input
+                                        type={showApiKey ? 'text' : 'password'}
+                                        value={aiSettings.apiKey}
+                                        onChange={(e) => setAiSettings({...aiSettings, apiKey: e.target.value.trim()})}
+                                        placeholder="sk-ant-api03-..."
+                                        style={{ flex: 1 }}
+                                        autoComplete="off"
+                                    />
+                                    <button
+                                        type="button"
+                                        className="secondary"
+                                        onClick={() => setShowApiKey(!showApiKey)}
+                                        style={{ padding: '10px 14px' }}
+                                    >
+                                        {showApiKey ? '🙈 Verberg' : '👁️ Toon'}
+                                    </button>
+                                </div>
+                                <p style={{ fontSize: '12px', color: '#999', marginTop: '6px' }}>
+                                    Maak er een aan op <a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener noreferrer" style={{ color: '#4472C4' }}>console.anthropic.com</a>.
+                                    Wordt opgeslagen in jouw browser (localStorage).
+                                </p>
+                            </div>
+
+                            <div className="form-group">
+                                <label>Model</label>
+                                <select
+                                    value={aiSettings.model}
+                                    onChange={(e) => setAiSettings({...aiSettings, model: e.target.value})}
+                                >
+                                    <option value="claude-haiku-4-5">Claude Haiku 4.5 — snel & goedkoop (aanbevolen)</option>
+                                    <option value="claude-sonnet-4-6">Claude Sonnet 4.6 — slimmer maar duurder</option>
+                                    <option value="claude-opus-4-6">Claude Opus 4.6 — zwaarste model</option>
+                                </select>
+                                <p style={{ fontSize: '12px', color: '#999', marginTop: '6px' }}>
+                                    Voor 29 FAQs is Haiku ruim voldoende. Geschatte kosten: minder dan €0,001 per vraag.
+                                </p>
+                            </div>
+
+                            <div className="form-group">
+                                <label>Creativiteit (temperature): {aiSettings.temperature}</label>
+                                <input
+                                    type="range"
+                                    min="0"
+                                    max="1"
+                                    step="0.1"
+                                    value={aiSettings.temperature}
+                                    onChange={(e) => setAiSettings({...aiSettings, temperature: parseFloat(e.target.value)})}
+                                    style={{ width: '100%' }}
+                                />
+                                <p style={{ fontSize: '12px', color: '#999', marginTop: '6px' }}>
+                                    Lager = strakker bij FAQ-tekst, hoger = vrijer geformuleerd. 0.3 is een goede start.
+                                </p>
+                            </div>
+
+                            <div className="form-group" style={{ marginTop: '25px', padding: '15px', background: '#fff8e1', borderRadius: '6px', borderLeft: '4px solid #f9a825' }}>
+                                <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', fontWeight: '600' }}>
+                                    <input
+                                        type="checkbox"
+                                        checked={!!aiSettings.debug}
+                                        onChange={(e) => setAiSettings({...aiSettings, debug: e.target.checked})}
+                                        style={{ width: '18px', height: '18px' }}
+                                    />
+                                    🐛 Debug-modus inschakelen
+                                </label>
+                                <p style={{ fontSize: '12px', color: '#5d4037', marginTop: '6px', marginLeft: '26px' }}>
+                                    Toont onder elk antwoord in de chat welke laag is gebruikt (cache / Claude / lokaal),
+                                    welk faq_id, en eventuele fouten. Handig om te zien waarom een vraag escaleert.
+                                    Vergeet niet uit te zetten voordat je de chat aan gasten laat zien!
+                                </p>
+                            </div>
+
+                            <div style={{ display: 'flex', gap: '10px', marginTop: '20px' }}>
+                                <button
+                                    className="success"
+                                    onClick={testAIConnection}
+                                    disabled={aiTestStatus === 'testing' || !aiSettings.apiKey}
+                                >
+                                    {aiTestStatus === 'testing' ? '⏳ Bezig...' : '🧪 Test verbinding'}
+                                </button>
+                            </div>
+
+                            {aiTestStatus && (
+                                <div
+                                    className={`alert ${aiTestStatus === 'success' ? 'success' : 'info'}`}
+                                    style={{
+                                        marginTop: '15px',
+                                        background: aiTestStatus === 'error' ? '#FFEBEE' : undefined,
+                                        color: aiTestStatus === 'error' ? '#C62828' : undefined,
+                                        border: aiTestStatus === 'error' ? '1px solid #FFCDD2' : undefined
+                                    }}
+                                >
+                                    {aiTestMessage}
+                                </div>
+                            )}
+
+                            <div style={{ marginTop: '30px', padding: '20px', background: '#f9f9f9', borderRadius: '8px', borderLeft: '4px solid #4472C4' }}>
+                                <h3 style={{ marginBottom: '10px', fontSize: '15px' }}>Hoe werkt het precies?</h3>
+                                <ol style={{ paddingLeft: '20px', fontSize: '13px', color: '#555', lineHeight: '1.7' }}>
+                                    <li>Gast stelt vraag in de chat</li>
+                                    <li>Chat stuurt vraag + alle FAQs naar Claude</li>
+                                    <li>Claude zoekt de beste FAQ en formuleert een natuurlijk antwoord</li>
+                                    <li>Als geen enkele FAQ past, escaleert Claude automatisch naar Openstaande Vragen</li>
+                                    <li>Bij een API-fout valt het systeem terug op lokaal woord-matching</li>
+                                </ol>
+                            </div>
+                        </div>
+                    )}
+
+                    {showModal && (
+                        <div className="modal">
+                            <div className="modal-content">
+                                <h2>{editingId ? 'FAQ Bewerken' : 'Nieuw FAQ'}</h2>
+                                
+                                <div className="form-group">
+                                    <label>Categorie *</label>
+                                    <select
+                                        value={formData.category}
+                                        onChange={(e) => setFormData({...formData, category: e.target.value})}
+                                    >
+                                        <option value="">Selecteer categorie</option>
+                                        {categories.map(cat => (
+                                            <option key={cat} value={cat}>{cat}</option>
+                                        ))}
+                                    </select>
+                                </div>
+
+                                <div className="form-group">
+                                    <label>Vraag *</label>
+                                    <input
+                                        type="text"
+                                        value={formData.question}
+                                        onChange={(e) => setFormData({...formData, question: e.target.value})}
+                                        placeholder="Bijv. Wat zijn de uren van de bar?"
+                                    />
+                                </div>
+
+                                <div className="form-group">
+                                    <label>Antwoord *</label>
+                                    <textarea
+                                        value={formData.answer}
+                                        onChange={(e) => setFormData({...formData, answer: e.target.value})}
+                                        placeholder="Geef een duidelijk en volledig antwoord..."
+                                    />
+                                </div>
+
+                                <div className="form-actions">
+                                    <button className="secondary" onClick={() => setShowModal(false)}>Annuleren</button>
+                                    <button onClick={handleSave}>Opslaan</button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            );
+        };
+
+        ReactDOM.render(<FAQAdmin />, document.getElementById('root'));
+    </script>
+</body>
+</html>

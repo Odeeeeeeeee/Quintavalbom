@@ -1,0 +1,258 @@
+{
+  "faqs": [
+    {
+      "id": 1,
+      "category": "Eten & Drinken",
+      "question": "Wat zijn de openingstijden van de bar?",
+      "answer": "De bar is open van 8:30-11:30 uur voor drinken, koffie en verse broodjes. 's Middags van 15:00-19:00 uur (16:00-19:00 laagseizoen) voor wijntjes, biertjes en ijsjes. Gesloten op zondag.",
+      "status": "PDF",
+      "source": "Brochure",
+      "context": "Openingstijden bar, uren drinken, koffie, terras, wanneer open. Dit is over de bar faciliteiten, niet over receptie of camping."
+    },
+    {
+      "id": 2,
+      "category": "Eten & Drinken",
+      "question": "Kan ik mijn eigen drinken en eten meenemen naar de bar?",
+      "answer": "Nee, je bent niet toegestaan je eigen drinken of eten te nuttigen bij de bar of op het terras.",
+      "status": "PDF",
+      "source": "Brochure",
+      "context": "Bar regels, drinken, eten, meebrengen, picknick, terras. Gaat over bar faciliteiten en regels."
+    },
+    {
+      "id": 3,
+      "category": "Eten & Drinken",
+      "question": "Bieden jullie maaltijden aan?",
+      "answer": "Ja, op bepaalde avonden bieden we gezonde maaltijden aan. Het menu en moment worden op de receptie/bar aangegeven. Je moet je aanmelden en voortijds reserveren omdat er beperkt plaats is.",
+      "status": "PDF",
+      "source": "Brochure",
+      "context": "Eten, maaltijden, diner, restaurantservice, reservering. Bar en eten faciliteiten."
+    },
+    {
+      "id": 4,
+      "category": "Zwemmen",
+      "question": "Wat zijn de openingstijden van het zwembad?",
+      "answer": "Het zwembad is iedere dag open van 9:00 tot 19:00 uur.",
+      "status": "PDF",
+      "source": "Brochure",
+      "context": "Dit gaat over de zwembad faciliteiten, hoe laat je kunt zwemmen, baden, waterpret. Niet over uitchecken of campinguren."
+    },
+    {
+      "id": 5,
+      "category": "Zwemmen",
+      "question": "Wat zijn de regels voor het zwembad?",
+      "answer": "Gebruik op eigen risico. Kinderen moeten onder begeleiding zijn. Geen glas meenemen naar het zwembad.",
+      "status": "PDF",
+      "source": "Brochure",
+      "context": "Zwembadrегels, veiligheid water, kinderen baden, glasregels. Over waterveiligheid en zwembad faciliteiten."
+    },
+    {
+      "id": 6,
+      "category": "Parking & Auto's",
+      "question": "Mag ik met mijn auto naar mijn campingplaats rijden?",
+      "answer": "Ja, voor het uit- en inladen mag je naar de campingplaats rijden. Daarna moet de auto op de parkeerplaats blijven staan.",
+      "status": "PDF",
+      "source": "Brochure",
+      "context": "Auto, parkeren, rijden, camping plaats, voertuig, vervoer. Over parkeerregels en auto's op camping."
+    },
+    {
+      "id": 7,
+      "category": "Parking & Auto's",
+      "question": "Waar moet ik mijn auto parkeren?",
+      "answer": "Na het uit- en inladen van je spullen moet de auto op de parkeerplaats blijven staan.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 8,
+      "category": "Faciliteiten",
+      "question": "Is het kraanwater drinkbaar?",
+      "answer": "Ja, ons kraanwater is natuurlijk gezuiverd en drinkbaar. Het komt uit onze waterbron.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 9,
+      "category": "Faciliteiten",
+      "question": "Hoe betaal ik aan de bar?",
+      "answer": "Aan de bar is alleen contant betalen mogelijk. In het dorpje Gandarela de Basto is een pinautomaat.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 10,
+      "category": "Faciliteiten",
+      "question": "Hoe vaak wordt het toiletgebouw schoongemaakt?",
+      "answer": "Het toiletgebouw wordt iedere dag schoongemaakt.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 11,
+      "category": "Faciliteiten",
+      "question": "Wat kan ik in het toilet doorspelen?",
+      "answer": "Alleen wc papier kan in het toilet worden doorgespoeld. Andere zaken horen in de prullenbak.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 12,
+      "category": "Afval",
+      "question": "Hoe zit het met het chemisch afval van mijn toilet?",
+      "answer": "Er is geen stort voor chemisch afval op de camping. Je afval kan je gescheiden kwijt in de vuilnisbakken op de parkeerplaats en langs de weg bij de ingang.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 13,
+      "category": "Wassen",
+      "question": "Kan ik mijn was doen?",
+      "answer": "Ja, wassen kan op bepaalde momenten van de dag met wasmiddel dat bij ons te verkrijgen is. Schrijf je in bij de bar.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 14,
+      "category": "Check-out & Transport",
+      "question": "Tot hoe laat kan ik uitchecken?",
+      "answer": "Uitchecken graag voor 11:00 uur.",
+      "status": "PDF",
+      "source": "Brochure",
+      "context": "Vertrekken, accommodatie verlaten, inchecktijden, reserveringen. Dit is over camping accommodatie, niet over zwembad, bar of andere faciliteiten."
+    },
+    {
+      "id": 15,
+      "category": "Check-out & Transport",
+      "question": "Zijn er bussen in de buurt?",
+      "answer": "Ja, er vertrekken bussen vanuit Gandarela de Basto naar kleine plaatsen en grote steden in de omgeving.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 16,
+      "category": "Check-out & Transport",
+      "question": "Hoe kan ik een taxi bellen?",
+      "answer": "Je kunt lokale taxi Julio bereiken op +351 968 035 736.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 17,
+      "category": "Veiligheid & Richtlijnen",
+      "question": "Mag ik een bbq gebruiken?",
+      "answer": "Nee, bbq is niet toegestaan op de camping vanwege brandgevaar.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 18,
+      "category": "Veiligheid & Richtlijnen",
+      "question": "Mag ik eten buiten laten staan?",
+      "answer": "Nee, laat geen eten buiten staan.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 19,
+      "category": "Veiligheid & Richtlijnen",
+      "question": "Wat moet ik doen als ik bezoek krijg?",
+      "answer": "Bezoek van buiten de camping? Graag even melden.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 20,
+      "category": "Veiligheid & Richtlijnen",
+      "question": "Wat zijn de rusttijden op de camping?",
+      "answer": "Na 22:00 uur is het stil op de camping. Onze gasten stellen ontspanning & rust erg op prijs.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 21,
+      "category": "Contact & Noodgevallen",
+      "question": "Hoe kan ik de eigenaren bereiken?",
+      "answer": "Telefoon/WhatsApp: +351910348399, E-mail: motho@quintavalbom.nl, Web: www.quintavalbom.nl",
+      "status": "PDF",
+      "source": "Brochure",
+      "context": "Contact, eigenaren, telefoon, whatsapp, email, bereiken, informatie. Over hoe je de camping kunt contacteren."
+    },
+    {
+      "id": 22,
+      "category": "Contact & Noodgevallen",
+      "question": "Wat is het Europese alarmnummer?",
+      "answer": "Het Europese alarmnummer is 112.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 23,
+      "category": "Contact & Noodgevallen",
+      "question": "Hoe bereik ik een ambulance?",
+      "answer": "Ambulance Gandarela de Basto: +351 255 655 143",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 24,
+      "category": "Wifi & Overig",
+      "question": "Wat is het Wifi-wachtwoord?",
+      "answer": "Quinta Valbom Wifi: HappyHolidays!",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 25,
+      "category": "Wifi & Overig",
+      "question": "Wat zijn de pauzetijden?",
+      "answer": "Tussen 12:00 en 15:00 uur pauzeren we. Bij nood ben je bereikbaar via WhatsApp/SMS.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 26,
+      "category": "Over Quinta Valbom",
+      "question": "Wie zijn de eigenaren?",
+      "answer": "Moniek en Thomas zijn de eigenaren van Quinta Valbom. Ze hebben de camping opgericht omdat ze op zoek waren naar meer vrijheid, verbinding, buitenleven en betekenis.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 27,
+      "category": "Tips & Activiteiten",
+      "question": "Wat zijn leuke dingen om in de buurt te doen?",
+      "answer": "Er zijn veel activiteiten: wandelen naar Mondim de Basto, wijnproeverijen bij Santa Cristina of Villa Seara, Jeep tours, waterpark in Fafe of Amarante, Pena Aventura Park. Zie ook de kaart in de brochure voor meer tips.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 28,
+      "category": "Tips & Activiteiten",
+      "question": "Zijn er winkels in de omgeving?",
+      "answer": "Ja, in Gandarela de Basto (5 min rijden) zijn supermarkt, groente- en fruitboer, bakkerij. In Cabeceiras de Basto (15 min) zijn grotere supermarkten als Continente en Intermarché.",
+      "status": "PDF",
+      "source": "Brochure"
+    },
+    {
+      "id": 29,
+      "category": "Tips & Activiteiten",
+      "question": "Hoe kom ik aan informatie over fietsen?",
+      "answer": "Je kunt informatie over fietstochten en fietsverhuur krijgen bij de bar. Er is een ecopista fietspad van Arco de Baúlhe via Mondim en Celorico naar Amarante.",
+      "status": "PDF",
+      "source": "Brochure"
+    }
+  ],
+  "categories": [
+    "Afval",
+    "Check-out & Transport",
+    "Contact & Noodgevallen",
+    "Eten & Drinken",
+    "Faciliteiten",
+    "Over Quinta Valbom",
+    "Parking & Auto's",
+    "Tips & Activiteiten",
+    "Veiligheid & Richtlijnen",
+    "Wassen",
+    "Wifi & Overig",
+    "Zwemmen"
+  ]
+}
